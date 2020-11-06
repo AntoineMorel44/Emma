@@ -1,0 +1,73 @@
+// Arrow mixin
+// Make a CSS-only directional arrow
+// -------------------------
+
+// Note that the add-arrow mixin must be used in a relative or absolute element.
+
+@mixin add-arrow($position: 'top', $size: 10px, $color: transparent, $borderWidth: 1px, $borderColor: red, $offset: 50%) {
+	&:after,
+	&:before {
+		@if $position == top {
+			bottom: 100%;
+			right: $offset;
+		}
+		@elseif $position == right {
+			top: $offset;
+			left: 100%;
+		}
+		@elseif $position == bottom {
+			top: 100%;
+			left: $offset;
+		}
+		@elseif $position == left {
+			top: $offset;
+			right: 100%;
+		}
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+	&:after {
+		border-color: rgba(255, 255, 255, 0);
+		@if $position == top {
+			border-bottom-color: $color;
+			margin-left: -$size;
+		}
+		@elseif $position == right {
+			border-left-color: $color;
+			margin-top: -$size;
+		}
+		@elseif $position == bottom {
+			border-top-color: $color;
+			margin-left: -$size;
+		}
+		@elseif $position == left {
+			border-right-color: $color;
+			margin-top: -$size;
+		}
+		border-width: $size;
+	}
+	&:before {
+		border-color: rgba(255, 255, 255, 0);
+		@if $position == top {
+			border-bottom-color: $borderColor;
+			margin-left: -$size - $borderWidth;
+		}
+		@elseif $position == right {
+			border-left-color: $borderColor;
+			margin-top: -$size - $borderWidth;
+		}
+		@elseif $position == bottom {
+			border-top-color: $borderColor;
+			margin-left: -$size - $borderWidth;
+		}
+		@elseif $position == left {
+			border-right-color: $borderColor;
+			margin-top: -$size - $borderWidth;
+		}
+		border-width: $size + $borderWidth;
+	}
+}

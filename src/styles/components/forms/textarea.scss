@@ -1,0 +1,30 @@
+// Textarea
+// ---------------
+
+.c-textarea-wrapper {
+    overflow: hidden;
+    min-height: 6rem;
+    min-height: 6rem;
+    @extend %form-variables;
+    @extend %form-appearance;
+
+    &.is-readonly {
+        @extend %form-appearance-readonly;
+    }
+
+    textarea {
+        border: none;
+        display: block;
+        width: 100% !important;
+        height: 100%;
+        overflow-y: auto;
+        background-color: white !important;
+        resize: none;
+
+        &:hover,
+        &:focus {
+            outline: 0;
+            border: none;
+        }
+    }
+}

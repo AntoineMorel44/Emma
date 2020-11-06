@@ -1,0 +1,44 @@
+.c-tab {
+
+    .ui-tabview-nav {
+        display: flex;
+    }
+
+    .ui-state-active {
+        color: var(--ion-color-primary);
+    }
+
+}
+
+.c-tab-controls {
+    
+    display: flex;
+    font-size: var(--heading-h2-size);
+    font-weight: 300;
+    @include reset-ul();
+
+    .is-active {
+        color: var(--ion-color-primary);
+        position: relative;
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            width: 100%;
+            opacity: 1;
+        }
+        // first line puts some white on the global line
+        &:before {
+            background-color: var(--white);
+            z-index: 1;
+        }
+        &:after {
+            background-color: currentColor;
+            z-index: 2;
+        }
+    }
+}

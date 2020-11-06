@@ -1,0 +1,29 @@
+:root {
+
+    /**********************
+    ****** Options *******
+    **********************/
+
+    /**********************************
+    **** Decisions - Objects *******
+    **********************************/
+
+    --html-font-size-root-mobile: var(--font-size-base) - 2;
+    --html-font-size-root: var(--font-size-base);
+    --html-font-size-root-ecran4k: var(--font-size-base-ecran4k);
+
+    --body-background: Window;
+    --body-line-height: var(--line-height-base);
+    --body-font-family: var(--font-family-base);
+    --body-color: var(--text-color);
+
+    --ion-background-color: var(--grey80);
+    --ion-text-color: var(--body-color);
+
+    --hr-margin-top: var(--space-s);
+    --hr-margin-bottom: var(--space-s);
+    --hr-size: 1px;
+    --hr-color: var(--grey60);
+
+
+}

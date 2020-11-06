@@ -1,0 +1,386 @@
+// sass-lint:disable-all
+/* critical:start */
+/*
+	Inspired by :
+	- scaffolding.scss in BT3 : https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_scaffolding.scss
+	- reboot.scss in BT4 : https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
+	- normalize.scss : https://github.com/necolas/normalize.css/blob/master/normalize.css
+	- suitcss : https://github.com/suitcss/base/blob/master/lib/base.css
+
+	Target : IE9+
+
+*/
+
+// ------------------------------
+// Global elements
+// ------------------------------
+
+html {
+	// Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
+	box-sizing: border-box;
+	// Correct the line height in all browsers.
+	line-height: 1.15;
+	// Setting @viewport causes scrollbars to overlap content in IE11 and Edge, so
+	// we force a non-overlapping, non-auto-hiding scrollbar to counteract.
+	-ms-overflow-style: scrollbar;
+	// Change the default tap highlight to be completely transparent in iOS.
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	// Prevent adjustments of font size after orientation changes in
+	// IE on Windows Phone and in iOS.
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	// hide overflow on IE11
+    -ms-overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+// IE10+ doesn't honor `<meta name="viewport">` in some cases.
+@at-root {
+	@-ms-viewport { width: device-width; }
+}
+
+body {
+	// Reset browser margin
+	margin: 0;
+}
+
+// ------------------------------
+// Container
+// ------------------------------
+
+// the spacing is only managed with utilities
+.container,
+.container-fluid {
+	padding: 0;
+	position: relative;
+
+}
+
+// ------------------------------
+// Typography
+// ------------------------------
+
+// Remove top margins from headings
+// By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+// margin for easier control within type scales as it avoids margin collapsing.
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+	margin-bottom: .5rem;
+}
+
+// Reset margins on paragraphs
+p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+blockquote {
+	margin: 0;
+}
+
+// Lists
+ol,
+ul,
+dl {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	padding: 0;
+}
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+	margin-bottom: 0;
+}
+
+// Add the correct font weight in Chrome, Edge, and Safari
+b,
+strong {
+	font-weight: bolder;
+}
+
+// Prevent `sub` and `sup` elements from affecting the line height in
+// all browsers.
+sub,
+sup {
+	position: relative;
+	font-size: 75%;
+	line-height: 0;
+	vertical-align: baseline;
+}
+
+sub { bottom: -.25em; }
+sup { top: -.5em; }
+
+// ------------------------------
+// Links
+// ------------------------------
+
+a {
+	// Remove gaps in links underline in iOS 8+ and Safari 8+.
+	-webkit-text-decoration-skip: objects;
+	// Default styling
+	text-decoration: none;
+	transition: color var(--transition-time-default) var(--transition-easing-default);
+}
+
+
+button {
+	border: 0;
+	padding: 0;
+	background-image: none;
+	// consistency with links
+	text-align: left;
+}
+
+a,
+button {
+	cursor: pointer;
+	// Remove the gray background on active links in IE 10.
+	background-color: transparent;
+	// Remove default color since every link / button isn't only typography (ex: cards)
+	color: inherit;
+	// consistency
+	vertical-align: middle;
+}
+
+p > a {
+	vertical-align: baseline;
+}
+
+// ------------------------------
+// Forms
+// ------------------------------
+
+input,
+button,
+select,
+textarea {
+	// Reset fonts for relevant elements
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	// Remove the margin in Firefox and Safari
+	margin: 0;
+	// Remove the inheritance of text transform in Edge, Firefox, and IE.
+	text-transform: none;
+}
+
+// Prevent a WebKit bug where (2) destroys native `audio` and `video`
+// controls in Android 4.
+// Correct the inability to style clickable types in iOS and Safari.
+// button,
+// html [type="button"],
+// [type="reset"],
+// [type="submit"] {
+// 	-webkit-appearance: button;
+// }
+
+//  Remove the inner border and padding in Firefox.
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+// Restore the focus styles unset by the previous rule.
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+
+// remove HTML5 arrows if input type is number
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+// Work around a Firefox/IE bug where the transparent `button` background
+// results in a loss of the default `button` focus styles.
+// Credit: https://github.com/suitcss/base/
+button:focus {
+	outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+textarea {
+	// Remove the default vertical scrollbar in IE.
+	overflow: auto;
+	// Textareas should really only resize vertically so they don't break their (horizontal) containers.
+	resize: vertical;
+}
+
+[type="checkbox"],
+[type="radio"] {
+	// Add the correct box sizing in IE 10-.
+	box-sizing: border-box;
+	// Remove the padding in IE 10-.
+	padding: 0;
+}
+
+// Correct the cursor style of increment and decrement buttons in Chrome.
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+::-webkit-file-upload-button {
+	// Correct the inability to style clickable types in iOS and Safari.
+	-webkit-appearance: button;
+	// Change font properties to `inherit` in Safari.
+	font: inherit;
+}
+
+// iOS "clickable elements" fix for role="button"
+//
+// Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+// for traditionally non-focusable elements with role="button"
+// see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+[role="button"] {
+	cursor: pointer;
+}
+
+// Remove the default appearance of temporal inputs to avoid a Mobile Safari
+// bug where setting a custom line-height prevents text from being vertically
+// centered within the input.
+// See https://bugs.webkit.org/show_bug.cgi?id=139848
+// and https://github.com/twbs/bootstrap/issues/11266
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+	-webkit-appearance: listbox;
+}
+
+legend {
+	// Correct the text wrapping in Edge and IE.
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	white-space: normal;
+	line-height: inherit;
+	// Correct the color inheritance from `fieldset` elements in IE.
+	color: inherit;
+	// Remove the padding so developers are not caught out when they zero out
+	//`fieldset` elements in all browsers.
+	padding: 0;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+	outline: none !important;
+}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+// In particular, unlike most other browsers, IE11+Edge on Windows 10 on touch devices and IE Mobile 10-11
+// DON'T remove the click delay when `<meta name="viewport" content="width=device-width">` is present.
+// However, they DO support removing the click delay via `touch-action: manipulation`.
+// See:
+// * https://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+// * http://caniuse.com/#feat=css-touch-action
+// * https://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+
+a,
+button,
+[role="button"],
+input,
+label,
+select,
+textarea {
+	touch-action: manipulation;
+}
+
+// ------------------------------
+// Tables
+// ------------------------------
+
+table {
+	// Prevent double borders
+	border-collapse: collapse;
+}
+
+th {
+	// Matches default `<td>` alignment
+	text-align: left;
+}
+
+// ------------------------------
+// Media
+// ------------------------------
+
+img {
+	vertical-align: middle;
+	// Remove the border on images inside links in IE 10-.
+	border-style: none;
+}
+
+// Hide the overflow in IE.
+svg:not(:root) {
+	overflow: hidden;
+}
+
+// Add the correct display in IE 9-.
+audio,
+video {
+	display: inline-block;
+}
+
+// Add the correct display in iOS 4-7.
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+iframe {
+	border: 0;
+}
+// ------------------------------
+// Horizontal rules
+// ------------------------------
+
+hr {
+	// Add the correct box sizing in Firefox.
+	box-sizing: content-box;
+	height: 0;
+	// Show the overflow in Edge and IE.
+	overflow: visible;
+}
+
+// ------------------------------
+// Code
+// ------------------------------
+
+pre,
+code {
+	// Correct the inheritance and scaling of font size in all browsers.
+	font-family: monospace, monospace;
+	// Correct the odd `em` font sizing in all browsers.
+	font-size: 1em;
+}
+
+// ------------------------------
+// Hidden
+// ------------------------------
+
+// Always hide an element with the `hidden` HTML attribute (from PureCSS).
+// Needed for proper display in IE 10-.
+[hidden] {
+	display: none !important;
+}
+
+/* critical:end */

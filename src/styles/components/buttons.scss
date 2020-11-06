@@ -1,0 +1,108 @@
+ion-button {
+    --height: 36px;
+    --border-radius: var(--border-radius-s);
+    --ripple-color: transparent;
+    
+    // onmouseleave
+    --transition: background-color var(--transition-precision);
+
+    font-size: var(--font-size);
+    text-transform: initial;
+    letter-spacing: normal;
+
+    &.button-solid {
+        &:hover {
+            --background: var(--blue-default-hover);
+            // onmouseenter
+            transition: background-color var(--transition-confort);
+        }
+        &:active,
+        &:focus {
+            --opacity: 0.85;
+            --transition: opacity var(--transition-precision);
+        }
+    }
+
+    &.button-clear {
+        --ion-color-base-rgb: transparent !important;
+        --font-size: var(--font-size-xs);
+        &:hover,
+        &:focus {
+            --opacity: 0.85;
+            // onmouseenter
+            transition: opacity var(--transition-precision);
+        }
+    }
+
+    &.button-outline {
+        --border-width: 1px;
+        --ion-color-base-rgb: transparent !important;
+        &:hover,
+        &:focus {
+            --opacity: 0.85;
+            --transition: opacity var(--transition-precision);
+        }
+    }
+
+    &.button-circle {
+        --padding-top: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        --padding-bottom: 0;
+        &:hover,
+        &:focus {
+            --opacity: 0.85;
+            --transition: opacity var(--transition-precision);
+        }
+    }
+}
+
+button:focus {
+    // focus is managed differently
+    outline: 0;
+}
+
+.c-underline-link {
+
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        width: 100%;
+        background-color: currentColor;
+    }
+
+}
+
+.c-button {
+
+    &--s {
+        --padding-start: var(--space-s);
+        --padding-end: var(--space-s);
+    }
+
+    &--m {
+        --padding-start: var(--space-m);
+        --padding-end: var(--space-m);
+    }
+
+    &--l {
+        --padding-start: var(--space-l);
+        --padding-end: var(--space-l);
+    }
+
+    &--xl {
+        --padding-start: var(--space-xl);
+        --padding-end: var(--space-xl);
+    }
+
+    &--xxl {
+        --padding-start: var(--space-xxl);
+        --padding-end: var(--space-xxl);
+    }
+}

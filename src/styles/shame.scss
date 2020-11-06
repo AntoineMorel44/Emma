@@ -1,0 +1,9 @@
+// Balance the absence of a systematic `href` attribute
+// on angular links using the `(click)` method
+a {
+    &:hover,
+    &:focus {
+        cursor: pointer;
+    }
+}
+

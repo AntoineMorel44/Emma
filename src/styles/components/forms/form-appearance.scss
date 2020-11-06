@@ -1,0 +1,94 @@
+// Shared styles for forms
+%form-variables {
+    // Default light theme
+    --form-color: currentColor;
+    --form-border-color: var(--grey40);
+    --form-background-color: var(--white);
+    --form-placeholer-color: var(--grey40);
+    --form-height: 38px;
+    --form-radius: 16px;
+}
+
+%form-appearance {
+
+    color: var(--form-color);
+    background-color: var(--form-background-color);
+    border: 1px solid var(--form-border-color);
+    font-size: 0.8rem;
+    border-radius: var(--form-radius);
+    height: var(--form-height);
+    transition: background-color var(--transition-confort),
+                color var(--transition-confort),
+                border-color var(--transition-confort);
+
+    @include placeholder(var(--form-placeholer-color));
+
+    &:hover,
+    &:focus {
+        outline: 0;
+    }
+
+}
+
+%form-appearance-readonly {
+    border: 0;
+    font-size: 1em;
+    width: auto;
+    text-align: right;
+
+    --form-background-color: transparent;
+}
+
+// Form group
+// ---------------
+
+.c-form-group {
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // min-height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: none;
+
+}
+
+// Label
+// ---------------
+
+.c-label {
+    display: block;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1;
+
+    &.is-readonly {
+        display: flex;
+        align-items: center;
+    }
+}
+
+// Input
+// ---------------
+
+.c-input {
+    @extend %form-variables;
+    @extend %form-appearance;
+    display: block;
+    width: 100%;
+
+    &.is-readonly {
+        @extend %form-appearance-readonly;
+    }
+}
+
+// Select
+// ---------------
+.c-select {
+    font-size: 0.8rem;
+}

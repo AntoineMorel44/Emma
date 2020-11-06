@@ -1,0 +1,79 @@
+// UI selectbutton
+
+.ui-selectbutton {
+
+    --selectbutton-active-background-color: var(--ion-color-primary);
+
+    --selectbutton-background-color: var(--grey80);
+
+    display: flex;
+
+    .ui-button {
+        position: relative;
+        padding: var(--space-xs) var(--space-m);
+        background-color: var(--selectbutton-background-color);
+        color: currentColor;
+        overflow: hidden;
+        font-size: 0.8rem;
+        transition: color var(--transition-precision);
+        // New stacking context
+        z-index: 0;
+
+        // before pseudo element for active effect
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--selectbutton-active-background-color);
+            transform: scale(0.5);
+            opacity: 0;
+            transition: transform var(--transition-precision),
+                        opacity var(--transition-precision);
+            z-index: -1;
+        }
+
+        &:first-child {
+            border-top-left-radius: var(--border-radius-xl);
+            border-bottom-left-radius: var(--border-radius-xl);
+        }
+        &:last-child {
+            border-top-right-radius: var(--border-radius-xl);
+            border-bottom-right-radius: var(--border-radius-xl);
+        }
+
+        & + .ui-button {
+            position: relative;
+            &:after {
+                content: '';
+                display: block;
+                height: 80%;
+                width: 1px;
+                background-color: var(--grey60);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+        }
+
+        &.ui-state-active {
+            color: var(--white);
+            &:after { content: none; }
+            &:before {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            outline: 0;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.c-block {
+
+    --block-radius: var(--border-radius-l);
+
+    // Default light theme
+    --block-border-color: var(--grey40);
+    --block-background: var(--white);
+    --block-shadow: var(--shadow-default);
+    --block-color: var(--text-color);
+
+    background-color: var(--block-background);
+    color: var(--block-color);
+    border-radius: var(--block-radius);
+    box-shadow: var(--block-default);
+    transition: background-color var(--transition-confort),
+                color var(--transition-confort),
+                border-color var(--transition-confort);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__header {
+        border-bottom: 1px solid var(--block-border-color);
+        transition: border-color var(--transition-confort);
+    }
+
+    &__content {
+        overflow-y: auto;
+        flex: 1;
+    }
+
+}

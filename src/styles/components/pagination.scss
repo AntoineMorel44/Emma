@@ -1,0 +1,107 @@
+.c-pagination,
+p-paginator {
+
+    --pagination-font-size: 1rem;
+    --pagination-btn-size: 30px;
+    --pagination-btn-radius: var(--border-radius-m);
+
+    // Default light theme
+    --pagination-color: var(--text-color);
+    --pagination-hover-color: var(--ion-color-primary);
+    --pagination-active-color: var(--white);
+    --pagination-btn-active-background-color: var(--ion-color-primary);
+    --pagination-arrow-color: var(--grey20);
+    --pagination-arrow-background-color: var(--grey60);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-l);
+
+
+    .ui-paginator,
+    .ui-paginator-pages {
+        display: flex;
+    }
+
+    .pi { @include icomoon(); }
+    // .pi-step-backward { }
+    .pi-caret-left { @extend .icon-navigate_before; }
+    .pi-caret-right { @extend .icon-navigate_next; }
+    // .pi-step-forward { }
+
+
+	a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var(--pagination-btn-size);
+        height: var(--pagination-btn-size);
+        border-radius: var(--pagination-btn-radius);
+        margin: 0 var(--space-xs);
+        font-size: var(--pagination-font-size);
+        color: var(--pagination-color);
+        transition: color var(--transition-precision);
+        // New stacking context
+        z-index: 0;
+
+        // before pseudo element for active effect
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: var(--pagination-btn-radius);
+            background-color: var(--pagination-btn-active-background-color);
+            transform: scale(0.5);
+            opacity: 0;
+            transition: transform var(--transition-precision),
+                        opacity var(--transition-precision);
+            z-index: -1;
+        }
+
+        &.ui-paginator-prev,
+        &.ui-paginator-next {
+            color: var(--pagination-arrow-color);
+            background-color: var(--pagination-arrow-background-color);
+            font-size: 1.5rem;
+            margin: 0 var(--space-l);
+            &:before {
+                display: none;
+            }
+        }
+
+        &.ui-paginator-first,
+        &.ui-paginator-last {
+            display: none;
+        }
+        
+        // States
+
+        &:hover,
+        &:focus {
+            color: var(--pagination-hover-color);
+            outline: 0;
+        }
+
+        &.ui-state-active {
+            color: var(--pagination-active-color);
+			&:before {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        &.ui-state-disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+	}
+
+}
+
+

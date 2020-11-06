@@ -1,0 +1,96 @@
+html,
+body {
+	// root font size for rem unit
+	font-size: var(--html-font-size-root-mobile);
+	@media (min-width: $breakpoint-main) {
+		font-size: var(--html-font-size-root);
+	}
+	@media (min-width: $breakpoint-ecran4k) {
+		font-size: var(--html-font-size-root-ecran4k);
+	}
+}
+
+body {
+	font-family: var(--body-font-family);
+	line-height: var(--body-line-height);
+	color: var(--body-color);
+	background-color: var(--body-background);
+	// overflow: hidden;
+}
+
+a {
+	color: var(--link-text-color);
+	text-decoration: var(--link-text-decoration);
+	transition: color var(--transition-time-default) var(--transition-easing-default);
+
+	&:hover,
+	&:focus {
+		color: var(--link-hover-color);
+		text-decoration: var(--link-hover-decoration);
+	}
+}
+img {
+	max-width: 100%;
+}
+
+hr {
+	margin-top: var(--hr-margin-top);
+	margin-bottom: var(--hr-margin-bottom);
+	border: 0;
+	border-top: var(--hr-size) solid var(--hr-color);
+}
+
+ion-button {
+	box-shadow: 4px 4px 4px grey;
+}
+
+@keyframes anim-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.custom-spinner {
+	display: inline-block;
+	font-size:2em;
+	height: 1em;
+    line-height: 1;
+    margin-bottom: .5rem;
+    margin-right: 50px;
+	animation: anim-rotate 2s infinite linear;
+	text-shadow: 0 0 .25em rgba(255,255,255, .3);
+}
+
+// Only display content to screen readers
+// See: http://a11yproject.com/posts/how-to-hide-content
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+// Use in conjunction with .sr-only to only display content when it's focused.
+// Useful for "Skip to main content" links;
+// see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+// Credit: HTML5 Boilerplate
+
+.sr-only-focusable {
+	&:active,
+	&:focus {
+		position: static;
+		width: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		clip: auto;
+	}
+}

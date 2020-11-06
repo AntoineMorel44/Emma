@@ -1,0 +1,81 @@
+@mixin container-basis() {
+	position: relative;
+
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 100%;
+
+	// create new stacking context
+	// z-index: map-get(var(--z-index, container);
+
+}
+
+@mixin make-container($breakpoint) {
+
+	@if $breakpoint == 'sm' {
+		width: var(--container-sm);
+	}
+
+	@if $breakpoint == 'md' {
+		@media (min-width: $breakpoint-md) {
+			width: var(--container-md);
+		}
+	}
+
+	@if $breakpoint == 'lg' {
+		@media (min-width: $breakpoint-lg) {
+			width: var(--container-lg);
+		}
+	}
+
+	@if $breakpoint == 'xl' {
+		@media (min-width: $breakpoint-xl) {
+			width: var(--container-xl);
+		}
+	}
+
+	@if $breakpoint == 'xxl' {
+		@media (min-width: $breakpoint-xxl) {
+			width: var(--container-xxl);
+		}
+	}
+}
+
+.l-container {
+
+	@include container-basis();
+
+	@include make-container('sm');
+	@include make-container('md');
+	@include make-container('lg');
+	@include make-container('xl');
+	@include make-container('xxl');
+
+}
+
+.l-container-sm {
+
+	@include container-basis();
+
+	@include make-container('sm');
+
+}
+
+.l-container-md {
+
+	@include container-basis();
+
+	@include make-container('sm');
+	@include make-container('md');
+
+}
+
+.l-container-lg {
+
+	@include container-basis();
+
+	@include make-container('sm');
+	@include make-container('md');
+	@include make-container('lg');
+
+}

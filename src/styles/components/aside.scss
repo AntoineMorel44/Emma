@@ -1,0 +1,68 @@
+:root {
+    --aside-width: 250px;
+}
+ion-router-outlet.is-authenticated {
+    left: var(--aside-width);
+}
+.c-aside {
+
+    --aside-shadow-size: 2px;
+
+    // Default light theme
+    --aside-gradient: var(--light-gradient);
+    --aside-color: var(--text-color);
+    --aside-controls-color: var(--grey20);
+    --aside-active-color: var(--ion-color-primary);
+    --aside-active-background-color: var(--grey80);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: var(--aside-width);
+    box-shadow: 0 var(--aside-shadow-size) 5px 0 rgba(0,0,0,0.05);
+    background-image: linear-gradient(var(--aside-gradient));
+    color: var(--aside-color);
+
+    transition: background-image var(--transition-confort),
+                color var(--transition-confort);
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__controls {
+        color: var(--aside-controls-color);
+        transition: color var(--transition-confort);
+    }
+
+
+    &__item {
+
+        display: flex;
+        align-items: center;
+        border-left: 4px solid transparent;
+        color: currentColor;
+        background-color: transparent;
+        transition: color var(--transition-default),
+                    border-color var(--transition-default)
+                    background-color var(--transition-default);
+        
+        &.is-active,
+        &:hover,
+        &:focus {
+            color: var(--aside-active-color);
+            background-color:  var(--aside-active-background-color);
+            border-color: var(--aside-active-color);
+            cursor: pointer;
+        }
+
+        &.is-disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+}

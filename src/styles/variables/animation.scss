@@ -1,0 +1,15 @@
+:root {
+
+    --transition-time-default: 0.2s;
+    --transition-easing-default: ease-in-out;
+    --transition-default: var(--transition-time-default) var(--transition-easing-default);
+
+    --transition-time-precision: 0.2s;
+    --transition-easing-precision: ease-in-out;
+    --transition-precision: var(--transition-time-precision) var(--transition-easing-precision);
+    
+    --transition-time-confort: 0.5s;
+    --transition-easing-confort: ease-in-out;
+    --transition-confort: var(--transition-time-confort) var(--transition-easing-confort);
+
+}

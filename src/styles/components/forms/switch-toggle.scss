@@ -1,0 +1,54 @@
+// Toggle
+// ---------------
+
+.c-toggle {
+    // --background
+    --background-checked: var(--grey60);
+    // --handle-background
+    --handle-background-checked: var(--ion-color-success);
+}
+
+
+// Switch
+// ---------------
+// .c-switch {
+
+//     --switch-color: var(--grey20);
+//     --switch-btn-color: var(--switch-color);
+//     --switch-btn-border-color: var(--switch-btn-color);
+//     --switch-font-size: var(--font-size-xs);
+//     --switch-opacity: 0.5;
+
+//     display: inline-block;
+//     color: var(--switch-color);
+
+//     &__btn {
+//         color: var(--switch-btn-color);
+//         border: 1px solid var(--switch-btn-border-color);
+//         border-right-width: 0;
+//         font-size: var(--switch-font-size);
+//         line-height: 2;
+//         opacity: var(--switch-opacity);
+//         transition: opacity var(--transition-precision);
+
+//         &:first-child {
+//             border-top-left-radius: var(--border-radius-base);
+//             border-bottom-left-radius: var(--border-radius-base);
+//         }
+//         &:last-child {
+//             border-top-right-radius: var(--border-radius-base);
+//             border-bottom-right-radius: var(--border-radius-base);
+//             border-right-width: 1px;
+//         }
+
+//         &.is-active {
+//             --switch-opacity: 1;
+//             border-right-width: 1px;
+//             & + .c-switch__btn {
+//                 border-left: 0;
+//             }
+//         }
+
+//     }
+
+// }

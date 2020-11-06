@@ -1,0 +1,81 @@
+// ----------
+// Margin
+// ----------
+
+// Margin utilities for specific breakpoint
+@mixin generate-a-margin-direction($suffix, $value) {
+	.u-mg#{$suffix}            { margin: $value !important; }
+	.u-mg-top#{$suffix}        { margin-top: $value !important; }
+	.u-mg-right#{$suffix}      { margin-right: $value !important; }
+	.u-mg-bottom#{$suffix}     { margin-bottom: $value !important; }
+	.u-mg-left#{$suffix}       { margin-left: $value !important; }
+	.u-mg-vt#{$suffix}  	    { margin-top: $value !important; margin-bottom: $value !important; }
+	.u-mg-hz#{$suffix}  	    { margin-left: $value !important; margin-right: $value !important; }
+	.u-mg-negative-hz#{$suffix} { margin-left: (-$value) !important; margin-right: (-$value) !important; }
+}
+
+@mixin generate-all-margin-direction($suffix) {
+	@include generate-a-margin-direction('-xs' + $suffix, var(--space-xs));
+	@include generate-a-margin-direction('-s' + $suffix, var(--space-s));
+	@include generate-a-margin-direction('-m' + $suffix, var(--space-m));
+	@include generate-a-margin-direction('-l' + $suffix, var(--space-l));
+	@include generate-a-margin-direction('-xl' + $suffix, var(--space-xl));
+	@include generate-a-margin-direction('-xxl' + $suffix, var(--space-xxl));
+	@include generate-a-margin-direction('-0' + $suffix, 0);
+}
+
+@include generate-all-margin-direction('');
+
+// Margin utilities for specific breakpoint
+@mixin generate-margin-breakpoint($suffix, $breakpoint) {
+	@media (min-width: $breakpoint) {
+		@include generate-all-margin-direction($suffix);
+	}
+}
+
+@include generate-margin-breakpoint(\@main, $breakpoint-main);
+
+// Margin utilities for 12 col grid
+@for $i from 1 through 12 {
+	@include generate-a-margin-direction('-' + $i, percentage($i / 12))
+}
+
+// .u-mg-navbar-top { margin-top: $header-height !important; }
+
+// ----------
+// Padding
+// ----------
+
+// Padding utilities for specific breakpoint
+@mixin generate-a-padding-direction($suffix, $value) {
+	.u-pd#{$suffix}            { padding: $value !important; }
+	.u-pd-top#{$suffix}        { padding-top: $value !important; }
+	.u-pd-right#{$suffix}      { padding-right: $value !important; }
+	.u-pd-bottom#{$suffix}     { padding-bottom: $value !important; }
+	.u-pd-left#{$suffix}       { padding-left: $value !important; }
+	.u-pd-vt#{$suffix}  	   { padding-top: $value !important; padding-bottom: $value !important; }
+	.u-pd-hz#{$suffix}  	   { padding-left: $value !important; padding-right: $value !important; }
+}
+
+@mixin generate-all-padding-direction($suffix) {
+	@include generate-a-padding-direction('-xs' + $suffix, var(--space-xs));
+	@include generate-a-padding-direction('-s' + $suffix, var(--space-s));
+	@include generate-a-padding-direction('-m' + $suffix, var(--space-m));
+	@include generate-a-padding-direction('-l' + $suffix, var(--space-l));
+	@include generate-a-padding-direction('-xl' + $suffix, var(--space-xl));
+	@include generate-a-padding-direction('-xxl' + $suffix, var(--space-xxl));
+	@include generate-a-padding-direction('-0' + $suffix, 0);
+}
+
+@include generate-all-padding-direction('');
+
+// Padding utilities for specific breakpoint
+@mixin generate-padding-breakpoint($suffix, $breakpoint) {
+	@media (min-width: $breakpoint) {
+		@include generate-all-padding-direction($suffix);
+	}
+}
+
+@include generate-padding-breakpoint(\@main, $breakpoint-main);
+
+// .u-pd-navbar-top { padding-top: $header-height !important; }

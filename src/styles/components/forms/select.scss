@@ -1,0 +1,201 @@
+// NG select
+// Override @ng-select default theme
+
+// ---------------
+
+.c-autocomplete {
+    @extend %form-variables;
+    &.ng-select {
+
+        // New stacking context
+        z-index: 1;
+
+        .ng-select-container {
+            @extend %form-appearance;
+            min-height: 0;
+            &:hover {
+                box-shadow: none;
+            }
+        }
+        .ng-value-container {
+            position: relative;
+            height: var(--form-height);
+        }
+        .ng-placeholder {
+            color: var(--form-placeholder-color);
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .ng-has-value .ng-placeholder {
+            display: none;
+        }
+        .ng-input {
+            padding: 0 var(--space-m) !important;
+            top: 0 !important;
+            display: flex;
+            align-items: center;
+            height: var(--form-height);
+
+            input {
+                background-image: none !important;
+                &:hover,
+                &:focus {
+                    cursor: text !important;
+                }
+            }
+        }
+        .ng-clear-wrapper {
+            display: none;
+        }
+
+        // Arrow
+        .ng-arrow-wrapper {
+            padding-right: var(--space-m) !important;
+        }
+
+        .ng-arrow {
+
+            border: none !important;
+            top: initial !important;
+            height: auto !important;
+            width: auto !important;
+
+            @include icomoon();
+            @extend .icon-expand_more;
+            font-size: var(--font-size-m);
+        }
+
+        &.ng-select-opened .ng-arrow {
+            @extend .icon-close;
+        }
+
+        // States
+        &.ng-select-focused .ng-select-container {
+            border-color: var(--form-border-color) !important;
+            box-shadow: none !important;
+        }
+
+        &:focus {
+            outline: 0;
+        }
+
+        &.is-readonly {
+            .ng-select-container {
+                @extend %form-appearance-readonly;
+            }
+            .ng-arrow {
+                display: none;
+            }
+        }
+
+        // Options panel
+        .ng-dropdown-panel {
+            z-index: 0;
+            background-color: var(--white);
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-radius);
+
+
+            overflow: hidden;
+
+            .ng-dropdown-panel-items {
+                .ng-option {
+                    position: relative;
+                    white-space: normal;
+                    font-size: 0.9rem;
+                    padding: var(--space-s);
+                    &.ng-option-selected {
+                        background-color: var(--ion-color-primary) !important;
+                        color: var(--white);
+                      }
+                }
+            }
+        }
+
+        &.ng-select-top {
+            .ng-dropdown-panel {
+                bottom: 100%;
+                border-bottom: 0;
+                margin-bottom: 1px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+        &.ng-select-bottom {
+            .ng-dropdown-panel {
+                border-top: 0;
+                margin-top: 1px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                top: calc(100% - 25px) !important;
+                padding-top: 32px !important;
+            }
+        }
+    }
+}
+
+// .c-rounded-select {
+
+//     &:not(.ng-dropdown-panel) {
+//         // class is duplicated on panel
+
+//         --select-color: var(--text-color);
+//         --select-height: 36px;
+//         --select-font-size: var(--font-size-xs);
+
+//         display: block;
+//         font-size: var(--select-font-size);
+
+//     }
+
+//     // NG select elements
+//     .ng-select-container {
+//         --height: var(--select-height);
+//         border: 1px solid var(--select-color) !important;
+//         border-radius: calc(var(--select-height) / 2);
+//         padding: 0 var(--space-s);
+//     }
+
+//     .ng-value-container {
+//         color: var(--select-color);
+//     }
+
+//     .ng-dropdown-panel {
+//         border-color: var(--select-color);
+//     }
+
+//     .ng-option,
+//     .ng-arrow {
+//         color: var(--select-color) !important;
+//     }
+
+//     // NG select states
+//     &.ng-select-opened,
+//     .ng-select-opened {
+//         &.ng-select-bottom {
+//             .ng-select-container {
+//                 border-bottom-left-radius: 0;
+//                 border-bottom-right-radius: 0;
+//             }
+//             .ng-dropdown-panel {
+//                 margin-top: -1px !important;
+//             }
+//         }
+//         &.ng-select-top {
+//             .ng-select-container {
+//                 border-top-left-radius: 0;
+//                 border-top-right-radius: 0;
+//             }
+//             .ng-dropdown-panel {
+//                 margin-bottom: -1px !important;
+//             }
+//         }
+//     }
+
+//     &--primary {
+//         &:not(.ng-dropdown-panel) {
+//             --select-color: var(--ion-color-primary);
+//         }
+//     }
+// }

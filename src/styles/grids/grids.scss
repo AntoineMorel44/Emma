@@ -1,0 +1,47 @@
+.l-grid {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.l-col {
+	position: relative;
+	display: block;
+	min-height: 1px;
+}
+
+@mixin column($suffix) {
+
+	// Basic relative grid
+	.l-col {
+		&-full#{$suffix} { width: 100%; }
+		&-one-half#{$suffix} { width: 50%; }
+		&-one-third#{$suffix} { width: 33.3333%; }
+		&-two-third#{$suffix} { width: 66.6666%; }
+		&-one-quarter#{$suffix} { width: 25%; }
+		&-three-quarter#{$suffix} { width: 75%; }
+		&-one-fifth#{$suffix} { width: 20%; }
+		&-two-fifth#{$suffix} { width: 40%; }
+		&-three-fifth#{$suffix} { width: 60%; }
+		&-four-fifth#{$suffix} { width: 80%; }
+	}
+
+	// Alternative 12 columns
+	@for $i from 1 through 12 {
+		.l-col-#{$i}#{$suffix} {
+			width: percentage($i / 12);
+		}
+	}
+
+	// Specific dev
+	@for $i from 1 through 32 {
+		.l-col-spec-#{$i}#{$suffix} {
+			width: percentage($i / 32);
+		}
+	}
+}
+@include column('');
+
+// @media (min-width: $breakpoint-main) {
+// 	@include column(\@main);
+// }
+

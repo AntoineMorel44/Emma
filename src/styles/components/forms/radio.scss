@@ -1,0 +1,60 @@
+// Radio
+// ---------------
+// .c-radio {
+
+//     --radio-active-color: var(--ion-color-primary);
+//     --radio-padding: var(--space-xs);
+//     --radio-label-width: 36px;
+
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     position: relative;
+//     width: calc(var(--radio-label-width) * 2 + var(--space-xs));
+//     height: 30px;
+//     background-color: var(--grey80);
+//     border-radius: 15px;
+//     padding: var(--radio-padding);
+
+//     &:before {
+//         --tag-color: var(--radio-active-color);
+//         @extend .c-tag;
+//         content: '';
+//         position: absolute;
+//         top: calc(var(--radio-padding) / 2);
+//         left: calc(var(--radio-padding) / 2);
+//         width: var(--radio-label-width) !important;
+//         background: var(--white);
+//         z-index: 0;
+//         transform: translateX(0);
+//         transition: transform var(--transition-precision);
+//     }
+
+//     label {
+//       position: relative;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       height: 100%;
+//       z-index: 1;
+//       font-size: var(--font-size-xs);
+//       color: var(--grey40);
+//       width: var(--radio-label-width);
+//       transition: color var(--transition-precision);
+//       &:hover {
+//           cursor: pointer;
+//       }
+//     }
+
+//     input[type="radio"]{
+//       display: none;
+//       &:checked + label {
+//         color: var(--radio-active-color);
+//       }
+//     }
+
+//     &.is-true:before {
+//         transform: translateX(100%);
+//     }
+
+// }

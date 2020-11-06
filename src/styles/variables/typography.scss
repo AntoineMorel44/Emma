@@ -1,0 +1,46 @@
+:root {
+
+    /**********************
+    ****** Options *******
+    **********************/
+    
+    --font-family-base: 'Roboto', sans-serif;
+    --font-family-heading: var(--font-family-base);
+
+    --ion-font-family: var(--font-family-base);
+
+    --line-height-base: 1.5;
+
+    --font-size-xxs: 8px;
+    --font-size-xs: 12px;
+    --font-size-s: 16px;
+    --font-size-m: 20px;
+    --font-size-l: 24px;
+    --font-size-xl: 28px;
+    --font-size-xxl: 32px;
+
+    --font-size-base: var(--font-size-s);
+    --font-size-base-ecran4k: var(--font-size-xxl);
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+
+    /**********************************
+    **** Decisions - Objects *******
+    **********************************/
+
+    --link-text-color: currentColor;
+    --link-text-decoration: none;
+    --link-hover-color: var(--primary-color);
+    --link-hover-decoration: none;
+
+    --heading-h1-size: var(--font-size-xl);
+    --heading-h2-size: var(--font-size-l);
+    --heading-h3-size: var(--font-size-m);
+    --heading-h4-size: var(--font-size-s);
+
+}

@@ -1,0 +1,8 @@
+// REM calculation function
+@function calc-rem($target, $context: var(--html-font-size-root)) {
+	@return $target / $context * 1rem;
+}
+
+@function calc-px($target, $context: var(--html-font-size-root)) {
+	@return $target * $context / 1rem;
+}

@@ -1,0 +1,46 @@
+:root {
+  --logo-size: 80px;
+}
+
+.l-flip-container,
+.c-flipper__recto,
+.c-flipper__verso {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  margin: auto;
+}
+
+.l-flip-container {
+  // set the 3D perspective
+  perspective: 1000px;
+}
+
+.c-flipper {
+  
+  position: relative;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(0);
+  transition: transform var(--transition-confort);
+
+  &--flipped {
+    transform: rotateY(180deg);
+  }
+  
+  &__recto,
+  &__verso {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  &__recto {
+    z-index: 2;
+  }
+  
+  &__verso {
+    transform: rotateY(180deg);
+  }
+  
+}

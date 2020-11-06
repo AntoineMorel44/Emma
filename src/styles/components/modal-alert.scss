@@ -1,0 +1,243 @@
+.c-modal {
+
+    --modal-control-color: var(--grey20);
+    --modal-control-border-color: var(--modal-control-color);
+
+    &--sliding {
+
+        justify-content: flex-end !important;
+
+        --width: 400px;
+        --max-width: 80vw;
+        --height: 100vh;
+
+        // Specificity is fostered here to prevent compiler from merging media queries
+        // and thus moving the css order in the dist
+        @media (min-width: $breakpoint-md) and (max-width: $breakpoint-xl - 1) {
+            --width: 500px !important;
+        }
+
+        @media (min-width: $breakpoint-xl) {
+            --width: 600px !important;
+        }
+    
+    }
+    
+    // Size
+    &--lg {
+        --width: 90vw;
+        --height: 90vh;
+    }
+
+}
+
+.c-modal-home-small {
+    .modal-wrapper.md.sc-ion-modal-md {
+        height: 480px;
+        width: 900px;
+    }
+
+    
+    .c-button {
+        height: 60px;
+        width: 350px;
+    }
+
+    
+    h3 {
+        font-size: var(--font-size-xxl);
+    }
+}
+
+.c-modal-home-medium {
+    .modal-wrapper.md.sc-ion-modal-md {
+        height: 780px;
+        width: 900px;
+    }
+
+    
+    .c-button {
+        height: 60px;
+        width: 350px;
+    }
+
+    
+    h3 {
+        font-size: var(--font-size-xxl);
+    }
+}
+
+.c-modal-home-fin-travail{
+    .modal-wrapper.md.sc-ion-modal-md {
+        height: 100%;
+        width: 100%;
+    }
+    
+    h3 {
+        font-size: var(--font-size-xxl);
+    }
+    
+    .c-button {
+        height: 60px;
+        width: 350px;
+    }
+}
+
+.c-modal-home-standard-font-size {
+    font-size: var(--font-size-xxl);
+}
+
+.c-modal-home-protection-agent{
+    .modal-wrapper.md.sc-ion-modal-md {
+        height: 600px;
+        width: 850px;
+    }
+
+    h3 {
+        font-size: var(--font-size-xxl);
+    }
+    
+    ion-button {
+        height: 60px;
+        width: 350px;
+    }
+}
+
+.c-modal-home-creation-agent{
+    .modal-wrapper.md.sc-ion-modal-md {
+        width: 1200px;
+        height: 800px;
+
+        .ng-select.ng-select-single .ng-select-container {
+            height: 50px;
+        }
+
+        .c-button {
+            height: 60px;
+            width: 350px;
+        }
+
+        
+        h3 {
+            font-size: var(--font-size-xxl);
+        }
+    }
+}
+
+
+.c-modal-home {
+
+    --modal-control-color: var(--grey20);
+    --modal-control-border-color: var(--modal-control-color);
+
+    &--sliding {
+
+        justify-content: center !important;
+
+        --width: 600px;
+        --max-width: 80vw;
+        --height: 100vh;
+
+        // Specificity is fostered here to prevent compiler from merging media queries
+        // and thus moving the css order in the dist
+        @media (min-width: $breakpoint-md) and (max-width: $breakpoint-xl - 1) {
+            --width: 500px !important;
+        }
+
+        @media (min-width: $breakpoint-xl) {
+            --width: 600px !important;
+        }
+    
+    }
+    
+    // Size
+    &--lg {
+        --width: 90vw;
+        --height: 90vh;
+    }
+
+}
+
+.c-modal-content {
+
+    // Default light theme
+    --modal-background-color: var(--white);
+    --modal-color: var(--text-color);
+    --modal-border-color: var(--grey40);
+    --modal-header-background-color: var(--grey80);
+    --modal-header-color: currentColor;
+    
+    height: 100%; // height is inherited from plugin's `.modal-wrapper`
+    background-color: var(--modal-background-color);
+    color: var(--modal-color);
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--modal-header-background-color);
+        color: var(--modal-header-color);
+    }
+
+    // &__title {
+    //     margin: 0;
+    //     padding: 0;
+    // }
+
+    &__close {
+        height: 2rem;
+        font-size: 1.5rem;
+    }
+
+    &__body {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+}
+
+.c-alert {
+
+    --alert-background: var(--white);
+    --alert-font-size: var(--font-size-xs);
+    --alert-width: 400px;
+
+    background-color: var(--alert-background);
+    width: var(--alert-width);
+    max-width: 90%;
+
+    // Prime ng classes
+
+    .ui-dialog-titlebar {
+        height: 35px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .ui-dialog-titlebar-close {
+        @include icomoon();
+        @extend .icon-close;
+        font-size: var(--alert-font-size);
+    }
+
+    .ui-resizable-se {
+        display: none;
+    }
+
+    .ui-dialog-content {
+        padding: 0;
+    }
+
+}
+
+.ui-widget-overlay {
+
+    --overlay-background: rgba(0,0,0,0.8);
+
+    background-color: var(--overlay-background);
+    top: 0;
+    left: 0;
+}

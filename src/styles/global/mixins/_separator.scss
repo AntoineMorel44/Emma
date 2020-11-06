@@ -1,0 +1,122 @@
+// Separator
+// Make horizontal or vertical separator
+// -------------------------
+
+@mixin add-vertical-separator(
+    $position: 'before',
+    $height: 100%,
+    $width: 1px,
+    $background: $black,
+    $mobile: 'true',
+    $desktop: 'true'
+){
+
+    position: relative;
+
+    @if $position == 'before' {
+        &:before {
+            left: 0;
+            height: $height;
+            top: 50%;
+            transform: translateY(-50%);
+            width: $width;
+            position: absolute;
+            background: $background;
+
+            @if $mobile == 'true' {
+                @media (max-width: #{ $breakpoint-main - 1 }) {
+                    content: '';
+                }
+            }
+            @if $desktop == 'true' {
+                @media (min-width: $breakpoint-main) {
+                    content: '';
+                }
+            }
+
+        }
+    }
+
+    @if $position == 'after' {
+        &:after {
+            right: 0;
+            height: $height;
+            top: 50%;
+            transform: translateY(-50%);
+            width: $width;
+            position: absolute;
+            background: $background;
+
+            @if $mobile == 'true' {
+                @media (max-width: #{ $breakpoint-main - 1 }) {
+                    content: '';
+                }
+            }
+            @if $desktop == 'true' {
+                @media (min-width: $breakpoint-main) {
+                    content: '';
+                }
+            }
+
+        }
+    }
+
+}
+
+@mixin add-horizontal-separator(
+    $position: 'before',
+    $height: 1px,
+    $width: 100%,
+    $background: $black,
+    $mobile: 'true',
+    $desktop: 'true'
+){
+
+    position: relative;
+
+    @if $position == 'before' {
+        &:before {
+            top: 0;
+            height: $height;
+            left: 50%;
+            transform: translateX(-50%);
+            width: $width;
+            position: absolute;
+            background: $background;
+
+            @if $mobile == 'true' {
+                @media (max-width: #{ $breakpoint-main - 1 }) {
+                    content: '';
+                }
+            }
+            @if $desktop == 'true' {
+                @media (min-width: $breakpoint-main) {
+                    content: '';
+                }
+            }
+        }
+    }
+    @if $position == 'after' {
+        &:after {
+            bottom: 0;
+            height: $height;
+            left: 50%;
+            transform: translateX(-50%);
+            width: $width;
+            position: absolute;
+            background: $background;
+
+            @if $mobile == 'true' {
+                @media (max-width: #{ $breakpoint-main - 1 }) {
+                    content: '';
+                }
+            }
+            @if $desktop == 'true' {
+                @media (min-width: $breakpoint-main) {
+                    content: '';
+                }
+            }
+        }
+    }
+
+}

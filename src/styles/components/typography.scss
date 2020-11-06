@@ -1,0 +1,33 @@
+@mixin heading() {
+	font-family: var(--font-family-heading);
+	line-height: 1;
+	margin: 0;
+}
+
+.c-h1 {
+	@include heading();
+    font-size: calc(var(--heading-h1-size) - 2);
+
+	@media (min-width: $breakpoint-main) {
+		font-size: var(--heading-h1-size);
+	}
+}
+
+.c-h2 {
+	@include heading();
+	font-size: calc(var(--heading-h2-size) - 2);
+
+	@media (min-width: $breakpoint-main) {
+		font-size: var(--heading-h2-size);
+	}
+}
+
+.c-h3 {
+	@include heading();
+	font-size: var(--heading-h3-size);
+}
+
+.c-h4 {
+	@include heading();
+	font-size: var(--heading-h4-size);
+}

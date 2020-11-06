@@ -1,0 +1,33 @@
+// Checkbox
+// ---------------
+
+.ui-chkbox {
+
+    --background-color: var(--white);
+
+    .ui-chkbox-box {
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background-color: var(--background-color);
+
+        &:not(.ui-state-disabled):not(.ui-state-active):hover {
+            border: 1px solid var(--background-color);
+        }
+
+        &.ui-state-active {
+            // border: 1px solid #0275d8;
+            color: #ffffff;
+        }
+        &.ui-state-focus {
+            // border: 1px solid #0275d8;
+            // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .pi { @include icomoon(); }
+    .pi-check { @extend .icon-done; }
+    .pi-times { @extend .icon-close; }
+
+    .is-success & { --background-color: var(--ion-color-success); }
+    .is-error & { --background-color: var(--ion-color-danger); }
+
+}

@@ -1,0 +1,113 @@
+// Script-generated file, do not modify by hand
+
+$icon-price-tags-content: "\e936";
+$icon-storage-content: "\e1db";
+$icon-Autres-1-content: "\e90a";
+$icon-Couture-content: "\e909";
+$icon-Bin-content: "\e900";
+$icon-Commande-content: "\e901";
+$icon-Compte-content: "\e902";
+$icon-Cordonnerie-content: "\e904";
+$icon-Fleurs-content: "\e905";
+$icon-Pressing-content: "\e906";
+$icon-Reception-content: "\e907";
+$icon-Search-content: "\e908";
+$icon-photo_camera-content: "\e412";
+$icon-payment-content: "\e8a1";
+$icon-delete-content: "\e872";
+$icon-euro_symbol-content: "\e926";
+$icon-favorite-content: "\e87d";
+$icon-favorite_border-content: "\e87e";
+$icon-get_app-content: "\e884";
+$icon-file_upload-content: "\e2c6";
+$icon-question_answer-content: "\e8af";
+$icon-insert_comment-content: "\e24c";
+$icon-notifications-content: "\e7f4";
+$icon-notifications_active-content: "\e7f7";
+$icon-notifications_none-content: "\e7f5";
+$icon-notifications_off-content: "\e7f6";
+$icon-remove-content: "\e15b";
+$icon-power_settings_new-content: "\e8ac";
+$icon-visibility_off-content: "\e8f5";
+$icon-partenaires-content: "\e563";
+$icon-services-content: "\eb49";
+$icon-etablissements-content: "\e903";
+$icon-settings-content: "\e8b8";
+$icon-tune-content: "\e429";
+$icon-visibility-content: "\e8f4";
+$icon-arrow_back-content: "\e5c4";
+$icon-arrow_downward-content: "\e5db";
+$icon-arrow_forward-content: "\e5c8";
+$icon-arrow_upward-content: "\e5d8";
+$icon-cancel-content: "\e5c9";
+$icon-close-content: "\e5cd";
+$icon-mode_edit-content: "\e254";
+$icon-done-content: "\e876";
+$icon-expand_less-content: "\e5ce";
+$icon-expand_more-content: "\e5cf";
+$icon-add-content: "\e145";
+$icon-arrow_drop_down-content: "\e5c5";
+$icon-arrow_drop_up-content: "\e5c7";
+$icon-navigate_before-content: "\e408";
+$icon-navigate_next-content: "\e409";
+$icon-error-content: "\e000";
+$icon-insert_invitation-content: "\e24f";
+$icon-help-content: "\e887";
+$icon-import_export-content: "\e0c3";
+
+@mixin icon-classes {
+    .icon-price-tags:before { content: $icon-price-tags-content; }
+    .icon-storage:before { content: $icon-storage-content; }
+    .icon-Autres-1:before { content: $icon-Autres-1-content; }
+    .icon-Couture:before { content: $icon-Couture-content; }
+    .icon-Bin:before { content: $icon-Bin-content; }
+    .icon-Commande:before { content: $icon-Commande-content; }
+    .icon-Compte:before { content: $icon-Compte-content; }
+    .icon-Cordonnerie:before { content: $icon-Cordonnerie-content; }
+    .icon-Fleurs:before { content: $icon-Fleurs-content; }
+    .icon-Pressing:before { content: $icon-Pressing-content; }
+    .icon-Reception:before { content: $icon-Reception-content; }
+    .icon-Search:before { content: $icon-Search-content; }
+    .icon-photo_camera:before { content: $icon-photo_camera-content; }
+    .icon-payment:before { content: $icon-payment-content; }
+    .icon-delete:before { content: $icon-delete-content; }
+    .icon-euro_symbol:before { content: $icon-euro_symbol-content; }
+    .icon-favorite:before { content: $icon-favorite-content; }
+    .icon-favorite_border:before { content: $icon-favorite_border-content; }
+    .icon-get_app:before { content: $icon-get_app-content; }
+    .icon-file_upload:before { content: $icon-file_upload-content; }
+    .icon-question_answer:before { content: $icon-question_answer-content; }
+    .icon-insert_comment:before { content: $icon-insert_comment-content; }
+    .icon-notifications:before { content: $icon-notifications-content; }
+    .icon-notifications_active:before { content: $icon-notifications_active-content; }
+    .icon-notifications_none:before { content: $icon-notifications_none-content; }
+    .icon-notifications_off:before { content: $icon-notifications_off-content; }
+    .icon-remove:before { content: $icon-remove-content; }
+    .icon-power_settings_new:before { content: $icon-power_settings_new-content; }
+    .icon-visibility_off:before { content: $icon-visibility_off-content; }
+    .icon-partenaires:before { content: $icon-partenaires-content; }
+    .icon-services:before { content: $icon-services-content; }
+    .icon-etablissements:before { content: $icon-etablissements-content; }
+    .icon-settings:before { content: $icon-settings-content; }
+    .icon-tune:before { content: $icon-tune-content; }
+    .icon-visibility:before { content: $icon-visibility-content; }
+    .icon-arrow_back:before { content: $icon-arrow_back-content; }
+    .icon-arrow_downward:before { content: $icon-arrow_downward-content; }
+    .icon-arrow_forward:before { content: $icon-arrow_forward-content; }
+    .icon-arrow_upward:before { content: $icon-arrow_upward-content; }
+    .icon-cancel:before { content: $icon-cancel-content; }
+    .icon-close:before { content: $icon-close-content; }
+    .icon-mode_edit:before { content: $icon-mode_edit-content; }
+    .icon-done:before { content: $icon-done-content; }
+    .icon-expand_less:before { content: $icon-expand_less-content; }
+    .icon-expand_more:before { content: $icon-expand_more-content; }
+    .icon-add:before { content: $icon-add-content; }
+    .icon-arrow_drop_down:before { content: $icon-arrow_drop_down-content; }
+    .icon-arrow_drop_up:before { content: $icon-arrow_drop_up-content; }
+    .icon-navigate_before:before { content: $icon-navigate_before-content; }
+    .icon-navigate_next:before { content: $icon-navigate_next-content; }
+    .icon-error:before { content: $icon-error-content; }
+    .icon-insert_invitation:before { content: $icon-insert_invitation-content; }
+    .icon-help:before { content: $icon-help-content; }
+    .icon-import_export:before { content: $icon-import_export-content; }
+}

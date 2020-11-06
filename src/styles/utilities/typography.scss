@@ -1,0 +1,91 @@
+// ----------
+// Typography
+// ----------
+
+.u-bold { font-weight: var(--font-weight-bold); }
+.u-normal { font-weight: normal !important; }
+.u-thin { font-weight: 300 !important; }
+
+.u-italic { font-style: italic; }
+
+.u-uppercase { text-transform: uppercase; }
+
+.u-small { font-size: var(--font-size-s); }
+
+.u-font-base { font-family: var(--font-family-base); }
+.u-font-heading { font-family: var(--font-family-heading); }
+
+.u-fs-base { font-size: var(--font-size-base); }
+.u-fs-xxs { font-size: var(--font-size-xxs); }
+.u-fs-xs { font-size: var(--font-size-xs); }
+.u-fs-s { font-size: var(--font-size-s); }
+.u-fs-m { font-size: var(--font-size-m); }
+.u-fs-l { font-size: var(--font-size-l); }
+.u-fs-xl { font-size: var(--font-size-xl); }
+.u-fs-xxl { font-size: var(--font-size-xxl); }
+.u-fs-icon4k { font-size: 40px; }
+
+.u-line-height-1 { line-height: 1; }
+
+.u-overline {
+    position: relative;
+    &:before {
+        content: '';
+        display: block;
+        border-radius: var(--border-radius-xl);
+        position: absolute;
+        top: -20px;
+        left: 0;
+        height: 4px;
+        width: 50px;
+        background-color: var(--ion-color-primary);
+    }
+}
+
+.u-block-underline {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        width: 100%;
+        background-color: currentColor;
+        opacity: 0.3;
+    }
+}
+
+.u-nowrap { white-space: nowrap; }
+
+// Colors
+
+.u-white { color: var(--white); }
+.u-black { color: var(--black); }
+.u-grey10 { color: var(--grey10); }
+.u-grey20 { color: var(--grey20); }
+.u-grey30 { color: var(--grey30); }
+.u-grey40 { color: var(--grey40); }
+.u-grey60 { color: var(--grey60); }
+.u-grey80 { color: var(--grey80); }
+.u-grey90 { color: var(--grey90); }
+
+.u-primary { color: var(--ion-color-primary) !important; }
+
+.u-success { color: var(--ion-color-success); }
+.u-error { color: var(--ion-color-danger); }
+
+.u-current-color { color: currentColor; }
+
+// Background colors
+
+.u-bg-primary { background-color: var(--ion-color-primary); }
+
+.u-bg-grey10 { background-color: var(--grey10); }
+.u-bg-grey20 { background-color: var(--grey20); }
+.u-bg-grey40 { background-color: var(--grey40); }
+.u-bg-grey60 { background-color: var(--grey60); }
+.u-bg-grey80 { background-color: var(--grey80); }
+.u-bg-grey90 { background-color: var(--grey90); }
+

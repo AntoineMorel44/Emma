@@ -1,0 +1,18 @@
+.u-overflow-vertical {
+    overflow-y: auto !important;
+}
+
+.u-overflow-visible {
+    overflow: visible !important;
+}
+
+.u-perspective { perspective: 600px; }
+
+.u-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Shame
+.u-clickable:hover { cursor: pointer; }

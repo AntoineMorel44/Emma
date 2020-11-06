@@ -1,0 +1,19 @@
+// ----------
+// Global
+// ----------
+
+.u-reset-list { @include reset-ul(); }
+
+@for $i from 0 through 20 {
+    .u-zi-#{$i} { z-index: $i; }
+}
+
+.u-br-base { border-radius: var(--border-radius-base); }
+.u-br-s { border-radius: var(--border-radius-s); }
+.u-br-m { border-radius: var(--border-radius-m); }
+.u-br-l { border-radius: var(--border-radius-l); }
+.u-br-xl { border-radius: var(--border-radius-xl); }
+.u-br-xxl { border-radius: var(--border-radius-xxl); }
+
+// Shame
+.u-clickable:hover { cursor: pointer; }

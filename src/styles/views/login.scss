@@ -1,0 +1,44 @@
+.view-login {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    // New stacking context
+    z-index: 0;
+
+
+    &__background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: 0% 100%;
+        z-index: 0;
+    }
+
+    &__block {
+        position: relative;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 20vw;
+        max-width: 100%;
+        min-height: 200px;
+        margin-left: 25vw;
+        transform: translateX(-50%);
+        z-index: 1;
+        padding: 2vw;
+    }
+
+    &__version {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .c-h1 {
+        font-size: 1.5vw;
+    }
+}
