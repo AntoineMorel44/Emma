@@ -1,6 +1,6 @@
 {
-  "appId": "com.emma.main",
-  "appName": "Emma",
+  "appId": "com.youna.main",
+  "appName": "Youna",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
