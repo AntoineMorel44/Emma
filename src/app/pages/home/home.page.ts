@@ -33,7 +33,7 @@ export class HomePage {
 
     // let bgElement = document.querySelectorAll('.message-list-wrapper');
     console.log('bgElement', bgElement);
-    bgElement.style.background = 'url("../../../assets/images/psy.jpg") no-repeat center center fixed';
+    bgElement.style.background = 'url("assets/images/psy.jpg") no-repeat center center fixed';
     bgElement.style.height = '100%';
     bgElement.style.overflow = 'hidden';
     bgElement.style['background-size'] = 'cover';
