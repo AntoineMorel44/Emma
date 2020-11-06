@@ -22,6 +22,7 @@
     "@capacitor/android": "^2.4.2",
     "@capacitor/cli": "^2.4.2",
     "@capacitor/core": "^2.4.2",
+    "angular-cli-ghpages": "^0.6.2",
     "rxjs": "~6.4.0",
     "save": "^2.4.0",
     "tslib": "^1.9.0",

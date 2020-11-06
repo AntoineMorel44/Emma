@@ -119,8 +119,13 @@
               "devServerTarget": "portfolio-freelance:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "portfolio-freelance"
 }
