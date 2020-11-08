@@ -31,6 +31,26 @@
     background-color: #65A4DA;
 }
 
+.navbar {
+    position: absolute;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;;
+    background-color: white;
+    justify-content: space-around;
+}
+
+.nav-icon {
+    height: 60px;
+    padding: 10px;
+
+    &.selected {
+        background-color: cadetblue;
+        border-radius: 5em;
+    }
+}
+
+
 // .main-panel {
 //     background-color: #f7f7f7;
 //     height: 100%;

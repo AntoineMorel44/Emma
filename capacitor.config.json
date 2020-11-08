@@ -1,6 +1,6 @@
 {
-  "appId": "com.youna.main",
-  "appName": "Youna",
+  "appId": "com.noemie.main",
+  "appName": "Noemie",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
