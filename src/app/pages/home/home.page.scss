@@ -6,13 +6,16 @@
     height: calc(100% - 60px);
     width: 100%;
     overflow: auto;
+
+    &.introduction {
+        height: 100%;
+    }
 }
 
 .btn {
     border-color: transparent !important;
     font-weight: 510;
     padding: 15px 10px;
-    color: white;
 }
 
 .btn1 {

@@ -1,4 +1,4 @@
-<div class="card u-width-full">
+<div class="card u-width-full" [class.introduction]="view === Page.INTRODUCTION">
     <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap">
     <div class="card-body  u-mg-s">
         <div *ngIf="view === Page.INTRODUCTION">
@@ -26,6 +26,7 @@
         </div>
         <div *ngIf="view === Page.CHALLENGE">
             <h5 class="card-title">Vos challenges</h5>
+            <p class="card-text u-mg-vt-m">Vous pouvez déplacer des montagnes !</p>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="card-header">Challenge #1</div>
                 <div class="card-body">
@@ -50,7 +51,7 @@
         </div>
         <div *ngIf="view === Page.ADVICE">
             <h5 class="card-title">Vos trésors</h5>
-            <p class="card-text u-mg-vt-s">Retrouvez ici vos précieux conseils</p>
+            <p class="card-text u-mg-vt-m">Retrouvez ici vos précieux conseils</p>
             <div>
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-header">Conseil #1</div>
