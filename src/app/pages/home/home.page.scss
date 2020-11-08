@@ -3,7 +3,7 @@
 
 .card {
     background-color: #f7f7f7;
-    height: 100%;
+    height: calc(100% - 60px);
     width: 100%;
     overflow: auto;
 }
@@ -45,6 +45,10 @@
 .nav-icon {
     height: 30px;
     margin: 0px 20px;
+}
+
+.hidden {
+    display: none;
 }
 
 

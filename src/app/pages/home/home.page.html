@@ -6,9 +6,9 @@
             <div>
                 <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
                 <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
-                    <p class="card-text u-mg-vt-m">Cependant vous avez besoin qu'on vous pose les bonnes questions.</p>
-                <p class="card-text u-mg-vt-m">Bonne nouvelle, je vais vous y aider !</p>
-                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Je commence</a>
+                    <p class="card-text u-mg-vt-m">Vous avez simplement besoin qu'on vous pose les bonnes questions.</p>
+                <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour ca !</p>
+                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">C'est parti !</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
@@ -26,11 +26,53 @@
         </div>
         <div *ngIf="view === Page.CHALLENGE">
             <h5 class="card-title">Vos challenges</h5>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Challenge #1</div>
+                <div class="card-body">
+                  <h5 class="card-title">Faire du sport</h5>
+                  <p class="card-text">Ajouter une description personnalisée...</p>
+                </div>
+              </div>
+              <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Challenge #2</div>
+                <div class="card-body">
+                  <h5 class="card-title">Parler à la femme de mes rêves</h5>
+                  <p class="card-text">Ajouter une description personnalisée...</p>
+                </div>
+              </div>
+              <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Challenge #3</div>
+                <div class="card-body">
+                  <h5 class="card-title">Demander une augmentation</h5>
+                  <p class="card-text">Ajouter une description personnalisée...</p>
+                </div>
+              </div>
         </div>
         <div *ngIf="view === Page.ADVICE">
             <h5 class="card-title">Vos trésors</h5>
-            <p class="card-text u-mg-vt-s">Retrouvez ici la liste de vos précieux conseils</p>
+            <p class="card-text u-mg-vt-s">Retrouvez ici vos précieux conseils</p>
             <div>
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Conseil #1</div>
+                    <div class="card-body">
+                      <h5 class="card-title">Etre honnête et sympa</h5>
+                      <p class="card-text">Ajouter une description personnalisée...</p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Conseil #2</div>
+                    <div class="card-body">
+                      <h5 class="card-title">Etre honnête et sympa</h5>
+                      <p class="card-text">Ajouter une description personnalisée...</p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Conseil #3</div>
+                    <div class="card-body">
+                      <h5 class="card-title">Etre honnête et sympa</h5>
+                      <p class="card-text">Ajouter une description personnalisée...</p>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -38,17 +80,17 @@
 
 <div *ngIf="view !== Page.INTRODUCTION" class="navbar u-flex u-flex-center-vt">
     <div (click)="setView(Page.DISCUSS)">
-        <img *ngIf="view === Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss-selected.svg"
+        <img [class.hidden]="view !== Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss-selected.svg"
             alt="discuss">
-        <img *ngIf="view !== Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss.svg" alt="discuss">
+        <img [class.hidden]="view === Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss.svg" alt="discuss">
     </div>
     <div (click)="setView(Page.CHALLENGE)">
-        <img *ngIf="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
-        <img *ngIf="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star">
+        <img [class.hidden]="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
+        <img [class.hidden]="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star">
     </div>
     <div (click)="setView(Page.ADVICE)">
-        <img *ngIf="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
-        <img *ngIf="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph">
+        <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
+        <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph">
     </div>
 </div>
 
