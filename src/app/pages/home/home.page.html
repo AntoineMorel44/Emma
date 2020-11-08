@@ -5,19 +5,19 @@
             <h5 class="card-title">Noémie</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
-                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.
-                    Vous avez seulement besoin qu'on vous pose les bonnes questions.</p>
-                <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour vous aider !</p>
-                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">J'ai compris</a>
+                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
+                    <p class="card-text u-mg-vt-m">Cependant vous avez besoin qu'on vous pose les bonnes questions.</p>
+                <p class="card-text u-mg-vt-m">Bonne nouvelle, je vais vous y aider !</p>
+                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Je commence</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
             <h5 class="card-title">Noémie</h5>
             <div>
                 <p class="card-text u-mg-vt-s">Super ! Que souhaitez-vous faire ?</p>
-                <a (click)="startChat('discussion')" class="btn btn3 btn-primary u-mg-vt-s u-width-full">Me débloquer
-                    d'une
-                    situation</a>
+                <a (click)="startChat('discussion')" class="btn btn3 btn-primary u-mg-vt-s u-width-full">Débloquer
+                    une
+                    situation personnelle</a>
                 <a (click)="startChat('day')" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Le Challenge du
                     jour</a>
                 <a (click)="startChat('defaut')" class="btn btn2 btn-primary u-mg-vt-s u-width-full">Mieux me
@@ -29,6 +29,7 @@
         </div>
         <div *ngIf="view === Page.ADVICE">
             <h5 class="card-title">Vos trésors</h5>
+            <p class="card-text u-mg-vt-s">Retrouvez ici la liste de vos précieux conseils</p>
             <div>
             </div>
         </div>
