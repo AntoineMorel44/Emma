@@ -1,43 +1,67 @@
-
 <div class="card u-width-full">
     <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap">
     <div class="card-body  u-mg-s">
-        <h5 class="card-title">Noémie</h5>
-        <div *ngIf="introduction">
-            <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
-            <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne. Vous avez seulement besoin qu'on vous pose les bonnes questions.</p>
-            <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour vous aider !</p>
-            <a (click)="skipIntroduction()" class="btn btn4 btn-primary u-mg-vt-s u-width-full">J'ai compris</a>
+        <div *ngIf="view === Page.INTRODUCTION">
+            <h5 class="card-title">Noémie</h5>
+            <div>
+                <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
+                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.
+                    Vous avez seulement besoin qu'on vous pose les bonnes questions.</p>
+                <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour vous aider !</p>
+                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">J'ai compris</a>
+            </div>
         </div>
-    <div *ngIf="!introduction">
-        <p class="card-text u-mg-vt-s">Super ! Que souhaitez-vous faire ?</p>
-        <a (click)="startChat('discussion')" class="btn btn3 btn-primary u-mg-vt-s u-width-full">Me débloquer d'une situation</a>
-        <a (click)="startChat('day')" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Le Challenge du jour</a>
-        <a (click)="startChat('defaut')" class="btn btn2 btn-primary u-mg-vt-s u-width-full">Mieux me comprendre</a>
-    </div>
+        <div *ngIf="view === Page.DISCUSS">
+            <h5 class="card-title">Noémie</h5>
+            <div>
+                <p class="card-text u-mg-vt-s">Super ! Que souhaitez-vous faire ?</p>
+                <a (click)="startChat('discussion')" class="btn btn3 btn-primary u-mg-vt-s u-width-full">Me débloquer
+                    d'une
+                    situation</a>
+                <a (click)="startChat('day')" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Le Challenge du
+                    jour</a>
+                <a (click)="startChat('defaut')" class="btn btn2 btn-primary u-mg-vt-s u-width-full">Mieux me
+                    comprendre</a>
+            </div>
+        </div>
+        <div *ngIf="view === Page.CHALLENGE">
+            <h5 class="card-title">Vos challenges</h5>
+        </div>
+        <div *ngIf="view === Page.ADVICE">
+            <h5 class="card-title">Vos trésors</h5>
+            <div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div *ngIf="!introduction" class="navbar u-flex">
-    <div>
-        <img class="nav-icon selected" src="assets/icons/treasure-map-white.svg" alt="treasure-map">
+<div *ngIf="view !== Page.INTRODUCTION" class="navbar u-flex u-flex-center-vt">
+    <div (click)="setView(Page.DISCUSS)">
+        <img *ngIf="view === Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss-selected.svg"
+            alt="discuss">
+        <img *ngIf="view !== Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss.svg" alt="discuss">
     </div>
-    <div>
-        <img class="nav-icon" src="assets/icons/treasure.svg" alt="treasure-map">
+    <div (click)="setView(Page.CHALLENGE)">
+        <img *ngIf="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
+        <img *ngIf="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star">
+    </div>
+    <div (click)="setView(Page.ADVICE)">
+        <img *ngIf="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
+        <img *ngIf="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph">
     </div>
 </div>
 
 <div *ngIf="chat==='defaut'">
-    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Me comprendre" agent-id="ff2bb02a-18de-496f-a595-73b9da2382e3"
-        language-code="fr"></df-messenger>
+    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Me comprendre"
+        agent-id="ff2bb02a-18de-496f-a595-73b9da2382e3" language-code="fr"></df-messenger>
 </div>
 <div *ngIf="chat==='day'">
     <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Le Challenge du jour"
         agent-id="7c52b852-101d-44b8-9861-cb3b42e09f24" language-code="fr"></df-messenger>
 </div>
 <div *ngIf="chat==='discussion'">
-    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Automatismes" agent-id="bb156c8c-1f33-457c-ad22-8052ab7e305d"
-        language-code="fr"></df-messenger>
+    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Automatismes"
+        agent-id="bb156c8c-1f33-457c-ad22-8052ab7e305d" language-code="fr"></df-messenger>
 
 </div>
 

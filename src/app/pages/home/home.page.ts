@@ -1,7 +1,12 @@
 import { Component, Injector } from '@angular/core';
 // Importing bootstrap "node_modules/bootstrap/dist/css/bootstrap.min.css"
               
-
+enum Page {
+  INTRODUCTION,
+  DISCUSS,
+  CHALLENGE,
+  ADVICE
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -9,9 +14,10 @@ import { Component, Injector } from '@angular/core';
 })
 export class HomePage {
 
+  Page = Page;
   chat: string = '';
   advicesToAsk = 2;
-  introduction = true;
+  view = Page.INTRODUCTION;
 
   constructor() {
   }
@@ -73,7 +79,7 @@ export class HomePage {
     setTimeout(() => this.dfMessengerInit(), 3000);
   }
 
-  skipIntroduction() {
-    this.introduction = false;
+  setView(page: Page) {
+    this.view = page;
   }
 }

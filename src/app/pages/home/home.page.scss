@@ -37,17 +37,14 @@
     height: 60px;
     width: 100%;;
     background-color: white;
-    justify-content: space-around;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 
 .nav-icon {
-    height: 60px;
-    padding: 10px;
-
-    &.selected {
-        background-color: cadetblue;
-        border-radius: 5em;
-    }
+    height: 30px;
+    margin: 0px 20px;
 }
 
 
