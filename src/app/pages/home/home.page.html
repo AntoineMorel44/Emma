@@ -5,7 +5,7 @@
     <!-- <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap"> -->
     <div class="card-body">
         <div *ngIf="view === Page.INTRODUCTION">
-            <h5 class="card-title introduction">Introduction</h5>
+            <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
                 <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
-            <h5 class="card-title">Noémie</h5>
+            <h5 class="card-title main-card-title">Noémie</h5>
             <div>
                 <p class="card-text u-mg-vt-s">Quel atelier souhaitez-vous faire ?</p>
                 <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom">Débloquer
@@ -27,11 +27,11 @@
             </div>
         </div>
         <div *ngIf="view === Page.CHALLENGE">
-            <h5 class="card-title">Vos challenges</h5>
+            <h5 class="card-title main-card-title">Vos challenges</h5>
             <p class="card-text u-mg-vt-m">Vous pouvez déplacer des montagnes !</p>
             <div>
                 <div *ngFor="let challenge of myChallenges; let i = index">
-                    <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header">Challenge #{{i+1}}</div>
                         <div class="card-body">
                           <h5 class="card-title capitalize">{{ challenge }}</h5>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div *ngIf="view === Page.ADVICE">
-            <h5 class="card-title">Vos trésors</h5>
+            <h5 class="card-title main-card-title">Vos trésors</h5>
             <p class="card-text u-mg-vt-m">Retrouvez ici vos précieux conseils</p>
             <div>
                 <div *ngFor="let advice of myAdvices; let i = index">
