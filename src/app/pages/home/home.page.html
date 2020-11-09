@@ -27,53 +27,31 @@
         <div *ngIf="view === Page.CHALLENGE">
             <h5 class="card-title">Vos challenges</h5>
             <p class="card-text u-mg-vt-m">Vous pouvez déplacer des montagnes !</p>
-            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header">Challenge #1</div>
-                <div class="card-body">
-                  <h5 class="card-title">Faire du sport</h5>
-                  <p class="card-text">Ajouter une description personnalisée...</p>
+            <div>
+                <div *ngFor="let challenge of myChallenges; let i = index">
+                    <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
+                        <div class="card-header">Challenge #{{i+1}}</div>
+                        <div class="card-body">
+                          <h5 class="card-title capitalize">{{ challenge }}</h5>
+                          <p class="card-text">Ajouter des notes supplémentaires...</p>
+                        </div>
+                      </div>
                 </div>
-              </div>
-              <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header">Challenge #2</div>
-                <div class="card-body">
-                  <h5 class="card-title">Parler à la femme de mes rêves</h5>
-                  <p class="card-text">Ajouter une description personnalisée...</p>
-                </div>
-              </div>
-              <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header">Challenge #3</div>
-                <div class="card-body">
-                  <h5 class="card-title">Demander une augmentation</h5>
-                  <p class="card-text">Ajouter une description personnalisée...</p>
-                </div>
-              </div>
+            </div>
         </div>
         <div *ngIf="view === Page.ADVICE">
             <h5 class="card-title">Vos trésors</h5>
             <p class="card-text u-mg-vt-m">Retrouvez ici vos précieux conseils</p>
             <div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Conseil #1</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Etre honnête et sympa</h5>
-                      <p class="card-text">Ajouter une description personnalisée...</p>
-                    </div>
-                  </div>
-                  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Conseil #2</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Etre honnête et sympa</h5>
-                      <p class="card-text">Ajouter une description personnalisée...</p>
-                    </div>
-                  </div>
-                  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Conseil #3</div>
-                    <div class="card-body">
-                      <h5 class="card-title">Etre honnête et sympa</h5>
-                      <p class="card-text">Ajouter une description personnalisée...</p>
-                    </div>
-                  </div>
+                <div *ngFor="let advice of myAdvices; let i = index">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Conseil #{{i+1}}</div>
+                        <div class="card-body">
+                          <h5 class="card-title capitalize">{{ advice }}</h5>
+                          <p class="card-text">Ajouter des notes supplémentaires...</p>
+                        </div>
+                      </div>
+                </div>
             </div>
         </div>
     </div>
@@ -88,10 +66,12 @@
     <div (click)="setView(Page.CHALLENGE)">
         <img [class.hidden]="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
         <img [class.hidden]="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star">
+        <span *ngIf="notificationsChallenge > 0" class="badge badge-info">{{ notificationsChallenge }}</span>
     </div>
     <div (click)="setView(Page.ADVICE)">
         <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
         <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph">
+        <span *ngIf="notificationsAdivce > 0" class="badge badge-info">{{ notificationsAdivce }}</span>
     </div>
 </div>
 

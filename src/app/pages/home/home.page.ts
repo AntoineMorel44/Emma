@@ -16,8 +16,15 @@ export class HomePage {
 
   Page = Page;
   chat: string = '';
+  lastRequestSent: any[];
+  lastResponseReceived: any[];
   advicesToAsk = 2;
   view = Page.INTRODUCTION;
+  notificationsAdivce = 0;
+  notificationsChallenge = 0;
+
+  myAdvices: string[] = [];
+  myChallenges: string[] = ['aaaaa aaa aa'];
 
   constructor() {
   }
@@ -29,47 +36,62 @@ export class HomePage {
   }
 
   dfMessengerInit() {
+    this.lastRequestSent = [];
+    this.lastResponseReceived = [];
     this.setMessengerStyle();
     this.subscribeToMessengerEvents();
   }
 
   setMessengerStyle() {
-    const dfMessenger: any = document.querySelector('df-messenger');
-    const messagesList = dfMessenger.shadowRoot.querySelector('df-messenger-chat').shadowRoot.querySelector('df-message-list').shadowRoot;
+    const dfMessenger: any = document.querySelector('df-messenger').shadowRoot;
+    const messagesList = dfMessenger.querySelector('df-messenger-chat').shadowRoot.querySelector('df-message-list').shadowRoot;
     const bgElement = <HTMLElement>messagesList.querySelector('.message-list-wrapper');
     console.log('bgElement', bgElement);
     bgElement.style.background = 'url("assets/images/psy.jpg") no-repeat center center fixed';
     bgElement.style.height = '100%';
     bgElement.style.overflow = 'hidden';
     bgElement.style['background-size'] = 'cover';
+
+    
+    const icon = <HTMLElement>dfMessenger.querySelector('#widgetIcon');
+    console.log('icon', icon);
+    icon.style.display = 'none';
   }
 
   subscribeToMessengerEvents() {
-    const dfMessenger = document.querySelector('df-messenger');
     let _this = this;
-    dfMessenger.addEventListener('df-response-received', function (event) {
-      console.log('getting event', event);
-      _this.handleResponse(event);
+
+    const dfMessenger = document.querySelector('df-messenger');
+    dfMessenger.addEventListener('df-response-received', function (event: any) {
+      const clone = JSON.parse(JSON.stringify(event.detail.response));
+      _this.lastResponseReceived.push(clone);
+      console.log('_this.lastResponseReceived', _this.lastResponseReceived);
+      _this.handleResponse(clone);
+    });
+
+    dfMessenger.addEventListener('df-request-sent', function (event: any) {
+      const clone = JSON.parse(JSON.stringify(event.detail.requestBody));
+      _this.lastRequestSent.push(clone);
+      console.log('_this.lastRequestSent', _this.lastRequestSent);
     });
   }
 
-  handleResponse(event) {
-    if (this.chat === 'discussion') {
-      this.handleDiscussionResponse(event);
-    }
-  }
 
-  handleDiscussionResponse(event) {
-    const response = event.detail.response;
+  handleResponse(response) {
     if (response && response.queryResult && response.queryResult.action) {
-      const action = response.queryResult.action;
-      if (action === '"FallBackIntent.FallBackIntent-fallback.FallBackIntent-fallback-fallback.Conseil-fallback.Noterconseil-yes"' || action === '"FallBackIntent.FallBackIntent-fallback.FallBackIntent-fallback-fallback.Conseil-fallback.Noterconseil-no"') {
-        if (this.advicesToAsk > 0) {
-          this.advicesToAsk--;
-        } else {
+      const fulfillmentMessages = response.queryResult.fulfillmentMessages as Array<any>;
 
+      fulfillmentMessages.forEach(message => {
+        if(message && message.payload && message.payload.advice) {
+          const advice = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
+          this.myAdvices.push(advice);
+          this.notificationsAdivce++;
+        } else if(message && message.payload && message.payload.challenge) {
+          const challenge = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
+          this.myChallenges.push(challenge);
+          this.notificationsChallenge++;
         }
-      }
+      });
     }
   }
 
@@ -80,6 +102,12 @@ export class HomePage {
   }
 
   setView(page: Page) {
+    if(page === Page.ADVICE) {
+      this.notificationsAdivce = 0;
+    } else if(page === Page.CHALLENGE) {
+      this.notificationsChallenge = 0;
+    }
+
     this.view = page;
   }
 }
