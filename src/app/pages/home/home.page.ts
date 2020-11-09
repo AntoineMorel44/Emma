@@ -30,9 +30,21 @@ export class HomePage {
   }
 
   ngOnInit() {
-    // setTimeout(() => this.dfMessengerInit(), 3000);
+    this.initLocalStorage();
+  }
 
+  initLocalStorage() {
+    this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
+    this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
+    this.myAdvices = JSON.parse(localStorage.getItem('myAdvices')) || [];
+    this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
+  }
 
+  saveAllToLocalStorage() {
+    localStorage.setItem('notificationsAdivce', String(this.notificationsAdivce));
+    localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
+    localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
+    localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
   }
 
   dfMessengerInit() {
@@ -86,10 +98,12 @@ export class HomePage {
           const advice = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
+          this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
           const challenge = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
           this.myChallenges.push(challenge);
           this.notificationsChallenge++;
+          this.saveAllToLocalStorage();
         }
       });
     }
@@ -104,8 +118,10 @@ export class HomePage {
   setView(page: Page) {
     if(page === Page.ADVICE) {
       this.notificationsAdivce = 0;
+      this.saveAllToLocalStorage();
     } else if(page === Page.CHALLENGE) {
       this.notificationsChallenge = 0;
+      this.saveAllToLocalStorage();
     }
 
     this.view = page;

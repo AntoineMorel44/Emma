@@ -1,6 +1,6 @@
 <div class="card u-width-full" [class.introduction]="view === Page.INTRODUCTION">
     <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap">
-    <div class="card-body  u-mg-s">
+    <div class="card-body  u-mg-top-s u-mg-bottom-m">
         <div *ngIf="view === Page.INTRODUCTION">
             <h5 class="card-title">Noémie</h5>
             <div>
@@ -8,19 +8,19 @@
                 <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
                     <p class="card-text u-mg-vt-m">Vous avez simplement besoin qu'on vous pose les bonnes questions.</p>
                 <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour ca !</p>
-                <a (click)="setView(Page.DISCUSS)" class="btn btn4 btn-primary u-mg-vt-s u-width-full">C'est parti !</a>
+                <a (click)="setView(Page.DISCUSS)" class="btn  btn-primary u-mg-vt-s u-width-full">C'est parti !</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
             <h5 class="card-title">Noémie</h5>
             <div>
-                <p class="card-text u-mg-vt-s">Super ! Que souhaitez-vous faire ?</p>
+                <p class="card-text u-mg-vt-s">Super ! Quel atelier souhaitez-vous faire ?</p>
                 <a (click)="startChat('discussion')" class="btn btn3 btn-primary u-mg-vt-s u-width-full">Débloquer
                     une
                     situation personnelle</a>
-                <a (click)="startChat('day')" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Le Challenge du
+                <a (click)="startChat('day')" class="btn btn4 btn-primary u-mg-vt-s u-width-full">Challenge du
                     jour</a>
-                <a (click)="startChat('defaut')" class="btn btn2 btn-primary u-mg-vt-s u-width-full">Mieux me
+                <a (click)="startChat('defaut')" class="btn btn2 btn-primary u-mg-vt-s u-width-full">Mieux vous
                     comprendre</a>
             </div>
         </div>
@@ -33,7 +33,7 @@
                         <div class="card-header">Challenge #{{i+1}}</div>
                         <div class="card-body">
                           <h5 class="card-title capitalize">{{ challenge }}</h5>
-                          <p class="card-text">Ajouter des notes supplémentaires...</p>
+                          <p class="card-text">Temps restant : 24h restantes</p>
                         </div>
                       </div>
                 </div>
@@ -44,7 +44,7 @@
             <p class="card-text u-mg-vt-m">Retrouvez ici vos précieux conseils</p>
             <div>
                 <div *ngFor="let advice of myAdvices; let i = index">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                         <div class="card-header">Conseil #{{i+1}}</div>
                         <div class="card-body">
                           <h5 class="card-title capitalize">{{ advice }}</h5>

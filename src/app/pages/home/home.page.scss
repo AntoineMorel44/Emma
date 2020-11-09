@@ -13,10 +13,16 @@
 }
 
 .btn {
-    border-color: transparent !important;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: left;
+    padding-right: 100px;;
+    background-repeat: no-repeat;
+    background-position: right;
     font-weight: 510;
-    padding: 15px 10px;
 }
+
+.card-img-top
 
 .btn1 {
     background-color: #8F98FF;
@@ -24,14 +30,21 @@
 
 .btn2 {
     background-color: #FF7648;
+    background-image: url('../../../assets/images/btn2.PNG');
+    border-color: #f77245;
 }
 
 .btn3 {
     background-color: #4DC591;
+    border-color: #45b182;
+    background-image: url('../../../assets/images/btn3.PNG');
+    // background-color: #4DC591;
 }
 
 .btn4 {
     background-color: #65A4DA;
+    background-image: url('../../../assets/images/btn4.PNG');
+    border-color: #5e98ca;
 }
 
 .navbar {
@@ -39,10 +52,11 @@
     bottom: 0px;
     height: 60px;
     width: 100%;;
-    background-color: white;
-    justify-content: center;
+    background-color: #f8f9fa!important;
+    box-shadow: 10px 10px 10px 7px black;
     border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+    justify-content: center;
+    // border-radius: 10px 10px 0% 0%;
 }
 
 .nav-icon {
