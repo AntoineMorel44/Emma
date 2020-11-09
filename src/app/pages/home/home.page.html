@@ -1,11 +1,11 @@
 
 
 
-<div class="card u-width-full" [class.introduction]="view === Page.INTRODUCTION">
+<div class="card main-card u-width-full" [class.introduction]="view === Page.INTRODUCTION">
     <!-- <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap"> -->
-    <div class="card-body u-mg-bottom-m">
+    <div class="card-body">
         <div *ngIf="view === Page.INTRODUCTION">
-            <h5 class="card-title">Noémie</h5>
+            <h5 class="card-title introduction">Introduction</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
                 <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
@@ -15,15 +15,15 @@
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
-            <h5 class="card-title" [class.discuss-panel]="view === Page.DISCUSS">Noémie</h5>
+            <h5 class="card-title">Noémie</h5>
             <div>
                 <p class="card-text u-mg-vt-s">Quel atelier souhaitez-vous faire ?</p>
-                <div (click)="startChat('discussion')" class="btn btn3  u-mg-vt-s u-width-full"><div class="text-bottom">Débloquer
+                <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom">Débloquer
                     une
                     situation personnelle</div></div>
-                <div (click)="startChat('day')" class="btn btn4  u-mg-vt-s u-width-full"><div class="text-bottom">Challenge du
+                <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom">Challenge du
                     jour</div></div>
-                <div (click)="startChat('defaut')" class="btn btn2  u-mg-vt-s u-width-full"><div class="text-bottom">Faire le point sur vos rêves</div></div>
+                <div (click)="startChat('defaut')" class="btn btn2 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom">Faire le point sur vos rêves</div></div>
             </div>
         </div>
         <div *ngIf="view === Page.CHALLENGE">
@@ -60,19 +60,19 @@
 </div>
 
 <div *ngIf="view !== Page.INTRODUCTION" class="navbar u-flex u-flex-center-vt">
-    <div class="navbar-item" (click)="setView(Page.DISCUSS)">
+    <div class="navbar-item" [class.selected]="view === Page.DISCUSS" (click)="setView(Page.DISCUSS)">
         <img [class.hidden]="view !== Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss-selected.svg"
             alt="discuss">
         <img [class.hidden]="view === Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss.svg" alt="discuss">
         Ateliers
     </div>
-    <div class="navbar-item" (click)="setView(Page.CHALLENGE)">
+    <div class="navbar-item" [class.selected]="view === Page.CHALLENGE" (click)="setView(Page.CHALLENGE)">
         <img [class.hidden]="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
         <img [class.hidden]="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star">
         <span *ngIf="notificationsChallenge > 0" class="badge badge-info">{{ notificationsChallenge }}</span>
         Challenges
     </div>
-    <div class="navbar-item" (click)="setView(Page.ADVICE)">
+    <div class="navbar-item" [class.selected]="view === Page.ADVICE" (click)="setView(Page.ADVICE)">
         <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
         <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph">
         <span *ngIf="notificationsAdivce > 0" class="badge badge-info">{{ notificationsAdivce }}</span>
