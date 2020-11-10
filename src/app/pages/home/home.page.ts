@@ -45,6 +45,9 @@ export class HomePage {
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
+
+    this.myChallenges.push('a','a','a','a','a','a','a','a');
+    this.myAdvices.push('a','a','a','a','a','a','a','a');
   }
 
   dfMessengerInit() {
@@ -124,6 +127,12 @@ export class HomePage {
       this.saveAllToLocalStorage();
     }
 
+    this.scrollToTop();
     this.view = page;
+  }
+
+  scrollToTop() {
+    var mainCard = document.getElementById('mainCard');
+    mainCard.scrollTop = 0;
   }
 }

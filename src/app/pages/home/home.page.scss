@@ -10,8 +10,13 @@
     overflow: auto;
 
     .card-body {
-        background: linear-gradient(0deg, rgba(10, 52, 90, 0.45) 0%, rgba(0, 0, 0, 0.0001) 100%);
+        background: linear-gradient(0deg, rgba(10, 52, 90, 1) 35%, rgba(0, 0, 0, 0.0001) 100%);
         min-height: auto;
+    }
+
+    .card-body-challenge {
+        // background: linear-gradient(0deg, rgba(10, 52, 90, 0.25) 0%, rgba(10, 52, 90, 0.25) 100%);
+        background: transparent;
     }
 
     &.introduction {
@@ -29,17 +34,28 @@
         border-radius: 25px;
         text-align: center;
         height: 100%;
-        margin-bottom: 65vh;
+        margin-bottom: 55vh;
 }
 
     .card-text {
         color: white;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.3);
         border-radius: 20px;
         padding: 15px;
     }
 }
 
+.challenge-card {
+    background-color: #244d74;
+    background: url("../../../assets/images/challenge2.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.advice-card {
+    background-color: #244d74;
+    background: url("../../../assets/images/advice.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
 
 .custom-btn {
     text-align: left;
@@ -54,11 +70,17 @@
     // 
 }
 
-.text-bottom {
-    background: linear-gradient(0deg, rgba(10, 52, 90, 0.1) 30%, rgba(10, 52, 90, 1) 100%);
+.text-bottom-container {
+    background: linear-gradient(0deg, rgba(10, 52, 90, 1) 0%, rgba(10, 52, 90, 0.1) 70%);
     height: 100%;
     border-radius: 20px;
     padding: 20px;
+    position: relative;
+}
+
+.text-bottom {
+    position: absolute;
+    bottom: 10px;
 }
 
 .btn1 {
@@ -86,9 +108,10 @@
     bottom: 0px;
     height: 60px;
     width: 100%;;
+    background: linear-gradient(0deg, rgb(22, 75, 126) 0%, rgb(10, 52, 90) 100%);
     background-color: rgb(10, 52, 90);
-    box-shadow: 10px 10px 10px 7px black;
-    border: 1px solid rgba(0,0,0,.125);
+    // box-shadow: 10px 10px 10px 7px black;
+    // border: 1px solid rgba(0,0,0,.125);
     justify-content: center;
     border-radius: 20px 20px 0% 0%;
 
@@ -100,7 +123,7 @@
 }
 
 .navbar-item {
-    display: grid;
+    // display: grid;
     margin: 0px 20px;
     color: grey;
     &.selected {
