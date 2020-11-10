@@ -19,6 +19,11 @@
         background: transparent;
     }
 
+    
+    .challenge-card-panel {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
     &.introduction {
         height: 100%;
     }

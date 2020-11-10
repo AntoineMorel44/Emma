@@ -1,6 +1,3 @@
-
-
-
 <div id="mainCard" class="card main-card u-width-full" [class.introduction]="view === Page.INTRODUCTION">
     <!-- <img class="card-img-top" src="assets/images/psy.jpg" alt="Card image cap"> -->
     <div class="card-body main-card-body">
@@ -8,8 +5,9 @@
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
-                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.</p>
-                    <p class="card-text u-mg-vt-m">Vous avez simplement besoin qu'on vous pose les bonnes questions.</p>
+                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.
+                </p>
+                <p class="card-text u-mg-vt-m">Vous avez simplement besoin qu'on vous pose les bonnes questions.</p>
                 <p class="card-text u-mg-vt-m">Bonne nouvelle : je suis là pour ca !</p>
                 <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">J'ai compris</a>
             </div>
@@ -18,12 +16,24 @@
             <h5 class="card-title main-card-title">Noémie</h5>
             <div>
                 <p class="card-text u-mg-vt-s">Dans quel domaine souhaitez-vous progresser ?</p>
-                <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom-container"><div class="text-bottom">Débloquer
-                    une
-                    situation personnelle</div></div></div>
-                <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom-container"><div class="text-bottom">Challenge du
-                    jour</div></div></div>
-                <div (click)="startChat('defaut')" class="btn btn2 custom-btn u-mg-vt-s u-width-full"><div class="text-bottom-container"><div class="text-bottom">Faire le point sur vos rêves</div></div></div>
+                <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
+                    <div class="text-bottom-container">
+                        <div class="text-bottom">Débloquer
+                            une
+                            situation personnelle</div>
+                    </div>
+                </div>
+                <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full">
+                    <div class="text-bottom-container">
+                        <div class="text-bottom">Challenge du
+                            jour</div>
+                    </div>
+                </div>
+                <div (click)="startChat('defaut')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
+                    <div class="text-bottom-container">
+                        <div class="text-bottom">Faire le point sur vos rêves</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div *ngIf="view === Page.CHALLENGE">
@@ -32,12 +42,14 @@
             <div>
                 <div *ngFor="let challenge of myChallenges; let i = index">
                     <div class="card text-white challenge-card mb-1 ">
-                        <div class="card-header">Challenge #{{i+1}}</div>
-                        <div class="card-body card-body-challenge">
-                          <h5 class="card-title capitalize">{{ challenge }}</h5>
-                          <p class="">Temps restant : 24h restantes</p>
+                        <div class="challenge-card-panel">
+                            <div class="card-header">Challenge #{{i+1}}</div>
+                            <div class="card-body card-body-challenge">
+                                <h5 class="card-title capitalize">{{ challenge }}</h5>
+                                <p class="">Temps restant : 24h restantes</p>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,12 +59,14 @@
             <div>
                 <div *ngFor="let advice of myAdvices; let i = index">
                     <div class="card text-white advice-card mb-1">
-                        <div class="card-header">Conseil #{{i+1}}</div>
-                        <div class="card-body card-body-challenge">
-                          <h5 class="card-title capitalize">{{ advice }}</h5>
-                          <p class="card-text">Ajouter des notes supplémentaires...</p>
+                        <div class="challenge-card-panel">
+                            <div class="card-header">Conseil #{{i+1}}</div>
+                            <div class="card-body card-body-challenge">
+                                <h5 class="card-title capitalize">{{ advice }}</h5>
+                                <p class="card-text">Ajouter des notes supplémentaires...</p>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
