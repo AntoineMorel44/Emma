@@ -22,6 +22,8 @@ export class HomePage {
   view = Page.INTRODUCTION;
   notificationsAdivce = 0;
   notificationsChallenge = 0;
+  botAskingAdviceIndex = 0;
+  botAskingChallengeIndex = 0;
 
   myAdvices: string[] = [];
   myChallenges: string[] = ['aaaaa aaa aa'];
@@ -45,9 +47,6 @@ export class HomePage {
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
-
-    this.myChallenges.push('a','a','a','a','a','a','a','a');
-    this.myAdvices.push('a','a','a','a','a','a','a','a');
   }
 
   dfMessengerInit() {
@@ -98,15 +97,19 @@ export class HomePage {
 
       fulfillmentMessages.forEach(message => {
         if(message && message.payload && message.payload.advice) {
-          const advice = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
+          const advice = this.lastRequestSent[this.botAskingAdviceIndex + 1].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
-          const challenge = this.lastRequestSent[this.lastRequestSent.length - 2].queryInput.text.text;
+          const challenge = this.lastRequestSent[this.botAskingChallengeIndex + 1].queryInput.text.text;
           this.myChallenges.push(challenge);
           this.notificationsChallenge++;
           this.saveAllToLocalStorage();
+        } else if(message && message.payload && message.payload.askingAdvice) {
+          this.botAskingAdviceIndex = this.lastResponseReceived.length - 1;
+        } else if(message && message.payload && message.payload.askingChallenge) {
+          this.botAskingChallengeIndex = this.lastResponseReceived.length - 1;
         }
       });
     }
