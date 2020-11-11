@@ -1,4 +1,5 @@
 import { Component, Injector } from '@angular/core';
+import * as moment from 'moment';
 // Importing bootstrap "node_modules/bootstrap/dist/css/bootstrap.min.css"
               
 enum Page {
@@ -6,6 +7,11 @@ enum Page {
   DISCUSS,
   CHALLENGE,
   ADVICE
+}
+export interface Challenge {
+  name: string;
+  dateFin: string;
+  tempsRestant: string;
 }
 @Component({
   selector: 'app-home',
@@ -25,21 +31,23 @@ export class HomePage {
   botAskingAdviceIndex = 0;
   botAskingChallengeIndex = 0;
 
-  myAdvices: string[] = [];
-  myChallenges: string[] = ['aaaaa aaa aa'];
+  myAdvices: any[] = [];
+  myChallenges: Challenge[] = [];
 
   constructor() {
   }
 
   ngOnInit() {
     this.initLocalStorage();
-  }
+  } 
 
   initLocalStorage() {
     this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
     this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
     this.myAdvices = JSON.parse(localStorage.getItem('myAdvices')) || [];
     this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
+    // this.myAdvices =  [];
+    // this.myChallenges = [];
   }
 
   saveAllToLocalStorage() {
@@ -108,7 +116,8 @@ export class HomePage {
           this.notificationsAdivce++;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
-          const challenge = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
+          const challengeName = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
+          let challenge: Challenge = {name: challengeName, dateFin: moment().add(1, 'days').format(), tempsRestant: ''};
           this.myChallenges.push(challenge);
           this.notificationsChallenge++;
           this.saveAllToLocalStorage();
@@ -146,11 +155,20 @@ export class HomePage {
       this.saveAllToLocalStorage();
     } else if(page === Page.CHALLENGE) {
       this.notificationsChallenge = 0;
+      this.computeTempsRestantOfChallenges();
       this.saveAllToLocalStorage();
     }
 
     this.scrollToTop();
     this.view = page;
+  }
+
+  computeTempsRestantOfChallenges() {
+    this.myChallenges.forEach(challenge => {
+      const tempsRestant = moment.utc(moment(challenge.dateFin).diff(moment()));
+      console.log('logs', challenge, tempsRestant);
+      challenge.tempsRestant = tempsRestant.format("HH") + ' heure(s) et ' + tempsRestant.format("mm") + ' minute(s)';
+    })
   }
 
   scrollToTop() {

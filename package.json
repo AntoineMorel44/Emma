@@ -23,6 +23,7 @@
     "@capacitor/cli": "^2.4.2",
     "@capacitor/core": "^2.4.2",
     "bootstrap": "^4.5.3",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.3",
     "save": "^2.4.0",
     "tslib": "^2.0.0",

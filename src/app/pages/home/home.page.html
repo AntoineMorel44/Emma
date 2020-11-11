@@ -18,7 +18,7 @@
                 <p class="card-text u-mg-vt-s">Dans quel domaine allez-vous progresser ?</p>
                 <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Discussion et conseil</div>
+                        <div class="text-bottom">Discussion et conseils</div>
                         <!-- <div class="text-bottom">Explorer un sujet personnel et obtenir un conseil</div> -->
                         <!-- <div class="text-bottom">Discussion libre et conseils</div> -->
                         <!-- <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div> -->
@@ -46,8 +46,8 @@
                         <div class="challenge-card-panel">
                             <div class="card-header">Challenge #{{myChallenges.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize">{{ myChallenges[myChallenges.length - 1 - i] }}</h5>
-                                <p class="">Temps restant : 24h restantes</p>
+                                <h5 class="card-title capitalize">{{ myChallenges[myChallenges.length - 1 - i].name }}</h5>
+                                <p class="card-text">Temps restant : {{ myChallenges[myChallenges.length - 1 - i].tempsRestant }} restantes</p>
                             </div>
                         </div>
                     </div>
