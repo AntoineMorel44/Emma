@@ -4,21 +4,24 @@
         <div *ngIf="view === Page.INTRODUCTION">
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
-                <p class="card-text u-mg-vt-m">Vivre une vie épanouie, c'est possible.</p>
+                <p class="card-text u-mg-vt-m">Vivre une vie épanouie est possible.</p>
                 <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.
                 </p>
-                <p class="card-text u-mg-vt-m">Vous avez simplement besoin qu'on vous pose les bonnes questions.</p>
-                <p class="card-text u-mg-vt-m">Bonne nouvelle : je vais vous aider !</p>
-                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">J'ai compris</a>
+                <p class="card-text u-mg-vt-m">Il faut cependant qu'on vous pose les bonnes questions !</p>
+                <p class="card-text u-mg-vt-m">Je vais vous aider, pas d'inquiétude.</p>
+                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
             <h5 class="card-title main-card-title">Noémie</h5>
             <div >
-                <p class="card-text u-mg-vt-s">Dans quel domaine souhaitez-vous progresser ?</p>
+                <p class="card-text u-mg-vt-s">Dans quel domaine allez-vous progresser ?</p>
                 <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div>
+                        <div class="text-bottom">Discussion et conseil</div>
+                        <!-- <div class="text-bottom">Explorer un sujet personnel et obtenir un conseil</div> -->
+                        <!-- <div class="text-bottom">Discussion libre et conseils</div> -->
+                        <!-- <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div> -->
                     </div>
                 </div>
                 <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full">
@@ -29,7 +32,7 @@
                 </div>
                 <div (click)="startChat('defaut')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Mettez le cap sur vos rêves !</div>
+                        <div class="text-bottom">Cap sur vos rêves !</div>
                     </div>
                 </div>
             </div>
