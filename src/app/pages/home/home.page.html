@@ -43,9 +43,9 @@
                 <div *ngFor="let challenge of myChallenges; let i = index">
                     <div class="card text-white challenge-card mb-1 ">
                         <div class="challenge-card-panel">
-                            <div class="card-header">Challenge #{{i+1}}</div>
+                            <div class="card-header">Challenge #{{myChallenges.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize">{{ challenge }}</h5>
+                                <h5 class="card-title capitalize">{{ myChallenges[myChallenges.length - 1 - i] }}</h5>
                                 <p class="">Temps restant : 24h restantes</p>
                             </div>
                         </div>
@@ -60,9 +60,9 @@
                 <div *ngFor="let advice of myAdvices; let i = index">
                     <div class="card text-white advice-card mb-1">
                         <div class="challenge-card-panel">
-                            <div class="card-header">Conseil #{{i+1}}</div>
+                            <div class="card-header">Conseil #{{myAdvices.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize">{{ advice }}</h5>
+                                <h5 class="card-title capitalize">{{ myAdvices[myAdvices.length - 1 - i] }}</h5>
                                 <p class="card-text">Ajouter des notes supplémentaires...</p>
                             </div>
                         </div>

@@ -79,7 +79,7 @@ export class HomePage {
     dfMessenger.addEventListener('df-response-received', function (event: any) {
       const clone = JSON.parse(JSON.stringify(event.detail.response));
       _this.lastResponseReceived.push(clone);
-      console.log('_this.lastResponseReceived', _this.lastResponseReceived);
+      console.log('_this.lastResponseReceived', this);
       _this.handleResponse(clone);
     });
 
@@ -87,6 +87,12 @@ export class HomePage {
       const clone = JSON.parse(JSON.stringify(event.detail.requestBody));
       _this.lastRequestSent.push(clone);
       console.log('_this.lastRequestSent', _this.lastRequestSent);
+    });
+
+    dfMessenger.addEventListener('df-button-clicked', function (event: any) {
+      console.log('button event');
+      _this.chat = '';
+      _this.setView(Page.DISCUSS);
     });
   }
 
@@ -115,10 +121,23 @@ export class HomePage {
     }
   }
 
+  initMessengerWhenOpened() {
+    const messenger = document.querySelector('df-messenger');
+    if(messenger) {
+      console.log('messenger',messenger)
+      this.dfMessengerInit();
+    } else {
+      setTimeout(() => this.dfMessengerInit(), 100);
+
+    }
+  }
+
   startChat(chatType: string) {
     this.chat = '';
-    setTimeout(() => this.chat = chatType, 100);
-    setTimeout(() => this.dfMessengerInit(), 3000);
+    setTimeout(() => {
+      this.chat = chatType;
+      this.initMessengerWhenOpened();
+    }, 100);
   }
 
   setView(page: Page) {
