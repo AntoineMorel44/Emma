@@ -34,6 +34,9 @@ export class HomePage {
   myAdvices: any[] = [];
   myChallenges: Challenge[] = [];
 
+  challengeLocked = true;
+  revesLocked = true;
+
   constructor() {
   }
 
@@ -44,6 +47,8 @@ export class HomePage {
   initLocalStorage() {
     this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
     this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
+    this.challengeLocked = localStorage.getItem('challengeLocked')!=="false";
+    this.revesLocked = localStorage.getItem('revesLocked')!=="false";
     this.myAdvices = JSON.parse(localStorage.getItem('myAdvices')) || [];
     this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
     // this.myAdvices =  [];
@@ -53,6 +58,8 @@ export class HomePage {
   saveAllToLocalStorage() {
     localStorage.setItem('notificationsAdivce', String(this.notificationsAdivce));
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
+    localStorage.setItem('challengeLocked', String(this.challengeLocked));
+    localStorage.setItem('revesLocked', String(this.revesLocked));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
   }
@@ -114,6 +121,7 @@ export class HomePage {
           const advice = this.lastRequestSent[this.botAskingAdviceIndex].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
+          this.challengeLocked = false;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
           const challengeName = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
@@ -142,25 +150,37 @@ export class HomePage {
   }
 
   startChat(chatType: string) {
-    this.chat = '';
-    setTimeout(() => {
-      this.chat = chatType;
-      this.initMessengerWhenOpened();
-    }, 100);
+    if(chatType === 'day' && this.challengeLocked) {
+      // Popup
+    } else if(chatType === 'reves' && this.revesLocked) {
+      // Popup
+    } else {
+      this.chat = '';
+      setTimeout(() => {
+        this.chat = chatType;
+        this.initMessengerWhenOpened();
+      }, 100);
+    }
   }
 
   setView(page: Page) {
-    if(page === Page.ADVICE) {
-      this.notificationsAdivce = 0;
-      this.saveAllToLocalStorage();
-    } else if(page === Page.CHALLENGE) {
-      this.notificationsChallenge = 0;
-      this.computeTempsRestantOfChallenges();
-      this.saveAllToLocalStorage();
+    if (this.myChallenges.length === 0 && page === Page.CHALLENGE) {
+      // Ne rien faire pour l'instant
+    } else if(this.myAdvices.length === 0 && page === Page.ADVICE) {
+      // Ne rien faire pour l'instant
+    } else {
+      if(page === Page.ADVICE) {
+        this.notificationsAdivce = 0;
+        this.saveAllToLocalStorage();
+      } else if(page === Page.CHALLENGE) {
+        this.notificationsChallenge = 0;
+        this.computeTempsRestantOfChallenges();
+        this.saveAllToLocalStorage();
+      }
+      this.scrollToTop();
+      this.view = page;
     }
-
-    this.scrollToTop();
-    this.view = page;
+    
   }
 
   computeTempsRestantOfChallenges() {

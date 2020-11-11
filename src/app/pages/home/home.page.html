@@ -25,12 +25,24 @@
                     </div>
                 </div>
                 <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full">
+                    <div class="lock-icon" *ngIf="challengeLocked">
+                        <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                            <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                      </svg>
+                    </div>
                     <div class="text-bottom-container">
                         <div class="text-bottom">Challenge du
                             jour</div>
                     </div>
                 </div>
-                <div (click)="startChat('defaut')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
+                <div (click)="startChat('reves')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
+                    <div class="lock-icon" *ngIf="revesLocked">
+                        <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                            <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                      </svg>
+                    </div>
                     <div class="text-bottom-container">
                         <div class="text-bottom">Cap sur vos rêves !</div>
                     </div>
@@ -95,8 +107,8 @@
     </div>
 </div>
 
-<div *ngIf="chat==='defaut'">
-    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Me comprendre"
+<div *ngIf="chat==='reves'">
+    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Cap sur vos rêves"
         agent-id="ff2bb02a-18de-496f-a595-73b9da2382e3" language-code="fr"></df-messenger>
 </div>
 <div *ngIf="chat==='day'">
@@ -104,7 +116,7 @@
         agent-id="7c52b852-101d-44b8-9861-cb3b42e09f24" language-code="fr"></df-messenger>
 </div>
 <div *ngIf="chat==='discussion'">
-    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Automatismes"
+    <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Discussion"
         agent-id="bb156c8c-1f33-457c-ad22-8052ab7e305d" language-code="fr"></df-messenger>
 
 </div>
