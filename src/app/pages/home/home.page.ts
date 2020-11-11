@@ -103,12 +103,12 @@ export class HomePage {
 
       fulfillmentMessages.forEach(message => {
         if(message && message.payload && message.payload.advice) {
-          const advice = this.lastRequestSent[this.botAskingAdviceIndex + 1].queryInput.text.text;
+          const advice = this.lastRequestSent[this.botAskingAdviceIndex].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
-          const challenge = this.lastRequestSent[this.botAskingChallengeIndex + 1].queryInput.text.text;
+          const challenge = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
           this.myChallenges.push(challenge);
           this.notificationsChallenge++;
           this.saveAllToLocalStorage();
