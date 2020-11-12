@@ -185,9 +185,12 @@ export class HomePage {
 
   computeTempsRestantOfChallenges() {
     this.myChallenges.forEach(challenge => {
-      const tempsRestant = moment.utc(moment(challenge.dateFin).diff(moment()));
-      console.log('logs', challenge, tempsRestant);
-      challenge.tempsRestant = tempsRestant.format("HH") + ' heure(s) et ' + tempsRestant.format("mm") + ' minute(s)';
+      if(moment().isSameOrAfter(challenge.dateFin)) {
+        challenge.tempsRestant = 'Challenge terminé ✔'
+      } else {
+        const tempsRestant = moment.utc(moment(challenge.dateFin).diff(moment()));
+        challenge.tempsRestant = tempsRestant.format("HH") + ' heure(s) et ' + tempsRestant.format("mm") + ' minute(s) restantes';
+      }
     })
   }
 

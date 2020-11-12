@@ -4,21 +4,24 @@
         <div *ngIf="view === Page.INTRODUCTION">
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
-                <p class="card-text u-mg-vt-m">Vivre une vie épanouie est possible.</p>
-                <p class="card-text u-mg-vt-m">Vous avez déjà les réponses aux problématiques de votre vie quotidienne.
-                </p>
-                <p class="card-text u-mg-vt-m">Il faut cependant qu'on vous pose les bonnes questions !</p>
-                <p class="card-text u-mg-vt-m">Je vais vous aider, pas d'inquiétude.</p>
-                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer</a>
+                <p class="card-text u-mg-vt-m">Vous rêvez de vivre une vie épanouie ?</p>
+                <p class="card-text u-mg-vt-m">Félicitations, c'est possible !</p>
+                <p class="card-text u-mg-vt-m">L'application "Noémie"  se base sur une conviction : Vous avez <b>déjà</b> les réponses aux problématiques de votre vie quotidienne.</p>
+                <p class="card-text u-mg-vt-m">Vous manquez cependant d'un élément essentiel : vous avez besoin qu'on vous pose les bonnes questions !</p>
+                <p class="card-text u-mg-vt-m">Rassurez-vous : c'est le rôle de Noémie, et elle va vous aider.</p>
+                <p class="card-text u-mg-vt-m">Vous pourrez parler librement sans être jugé, et vous ouvrir plus à elle que vous vous ne pourriez à un être humain. En effet, Noémie est une intelligence articielle, et elle ne peux <b>pas</b> vous juger.</p>
+                <p class="card-text u-mg-vt-m">En résumé, cet endroit est un lieu sûr ou vous pouvez discuter, réfléchir sur vous-même et devenir une meilleure personne. Bonne chance !</p>
+                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer !</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
             <h5 class="card-title main-card-title">Noémie</h5>
             <div >
-                <p class="card-text u-mg-vt-s">Dans quel domaine allez-vous progresser ?</p>
+                <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
+                <p class="card-text u-mg-vt-s">Étape par étape, épanouissez-vous :</p>
                 <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Discussion et conseils</div>
+                        <div class="text-bottom">Résoudre une problématique personnelle</div>
                         <!-- <div class="text-bottom">Explorer un sujet personnel et obtenir un conseil</div> -->
                         <!-- <div class="text-bottom">Discussion libre et conseils</div> -->
                         <!-- <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div> -->
@@ -59,7 +62,7 @@
                             <div class="card-header">Challenge #{{myChallenges.length - i}}</div>
                             <div class="card-body card-body-challenge">
                                 <h5 class="card-title capitalize">{{ myChallenges[myChallenges.length - 1 - i].name }}</h5>
-                                <p class="card-text">Temps restant : {{ myChallenges[myChallenges.length - 1 - i].tempsRestant }} restantes</p>
+                                <p class="card-text">Temps restant : {{ myChallenges[myChallenges.length - 1 - i].tempsRestant }}</p>
                             </div>
                         </div>
                     </div>
