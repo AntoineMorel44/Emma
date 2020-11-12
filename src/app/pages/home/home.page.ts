@@ -81,6 +81,9 @@ export class HomePage {
     bgElement.style.overflow = 'hidden';
     bgElement.style['background-size'] = 'cover';
 
+    const messageList = <HTMLElement>messagesList.querySelector('#messageList');
+    setTimeout(() => messageList.scrollTop = 0, 1500);
+
     
     const icon = <HTMLElement>dfMessenger.querySelector('#widgetIcon');
     console.log('icon', icon);
