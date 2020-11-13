@@ -133,9 +133,9 @@ export class HomePage {
           this.notificationsChallenge++;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.askingAdvice) {
-          this.botAskingAdviceIndex = this.lastResponseReceived.length - 1;
+          this.botAskingAdviceIndex = this.lastRequestSent.length;
         } else if(message && message.payload && message.payload.askingChallenge) {
-          this.botAskingChallengeIndex = this.lastResponseReceived.length - 1;
+          this.botAskingChallengeIndex = this.lastRequestSent.length;
         }
       });
     }

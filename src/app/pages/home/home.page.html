@@ -5,11 +5,11 @@
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Résoudre vos problèmes psychologiques, c'est le but de l'application "Noémie"</p>
-                <p class="card-text u-mg-vt-m">La vérité, c'est que les réponses étaient en vous tout ce temps</p>
-                <p class="card-text u-mg-vt-m">Vous aviez simplement besoin d'une application qui vous pose les bonnes questions !</p>
-                <p class="card-text u-mg-vt-m">Voilà la bonne nouvelle : Noémie, c'est son rôle, va vous aider.</p>
-                <p class="card-text u-mg-vt-m">Vous pourrez parler librement sans être jugé, et vous ouvrir plus à elle que vous vous ne pourriez à un être humain. En effet, Noémie est une intelligence artificielle, et elle ne peux <b>pas</b> vous juger.</p>
-                <p class="card-text u-mg-vt-m">En résumé, cet endroit est un lieu sûr ou vous pourrez discuter, réfléchir sur vous-même et devenir une meilleure personne. Bonne chance !</p>
+                <p class="card-text u-mg-vt-m">Vous êtes <b>l'unique personne</b> qui a la réponse à ces problèmes qui envhaissent votre quotidient.</p>
+                <p class="card-text u-mg-vt-m">Vous avez uniquement besoin qu'on vous pose les bonnes questions.</p>
+                <p class="card-text u-mg-vt-m">C'est le rôle de Noémie. Elle va vous guider vers vos réponses.</p>
+                <p class="card-text u-mg-vt-m">Noémie est une intelligence artificielle et ne peut donc pas vous juger. Pour la première fois, vous allez pouvoir parler librement et à coeur ouvert.</p>
+                <p class="card-text u-mg-vt-m">Vous êtes dans un lieu sûr, un coffre-fort ou vous exprimerez vos idées et vos croyances. Bonne chance !</p>
                 
                 <!-- <p class="card-text u-mg-vt-m">Vous rêvez de vivre une vie épanouie ?</p>
                 <p class="card-text u-mg-vt-m">Rassurez-vous, c'est possible !</p>
@@ -18,17 +18,20 @@
                 <p class="card-text u-mg-vt-m">Bonne nouvelle : c'est le rôle de Noémie, et elle va vous aider.</p>
                 <p class="card-text u-mg-vt-m">Vous pourrez parler librement sans être jugé, et vous ouvrir plus à elle que vous vous ne pourriez à un être humain. En effet, Noémie est une intelligence artificielle, et elle ne peux <b>pas</b> vous juger.</p>
                 <p class="card-text u-mg-vt-m">En résumé, cet endroit est un lieu sûr ou vous pourrez discuter, réfléchir sur vous-même et devenir une meilleure personne. Bonne chance !</p> -->
-                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer !</a>
+                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
             <h5 class="card-title main-card-title">Noémie</h5>
             <div >
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
-                <p class="card-text u-mg-vt-s">Étape par étape, devenez la personne que vous <b>rêvez</b> d'être :</p>
+                <!-- <p class="card-text u-mg-vt-s">Étape par étape, vos problèmes vont disparaitre :</p> -->
+                <p class="card-text u-mg-vt-s">Tournez-vous vers les solutions :</p>
                 <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Résoudre une problématique personnelle</div>
+                        <!-- <div class="text-bottom">Vous voir de l'extérieur, vous comprendre et vous encourager</div> -->
+                        <!-- <div class="text-bottom">Réussissez à vous comprendre et obtenez la réponse à vos questions</div> -->
+                        <div class="text-bottom">Comprenez-vous et explorez les solutions</div>
                         <!-- <div class="text-bottom">Explorer un sujet personnel et obtenir un conseil</div> -->
                         <!-- <div class="text-bottom">Discussion libre et conseils</div> -->
                         <!-- <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div> -->
@@ -42,8 +45,7 @@
                       </svg>
                     </div>
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Challenge du
-                            jour</div>
+                        <div class="text-bottom"><b>Votre</b> challenge du jour</div>
                     </div>
                 </div>
                 <div (click)="startChat('reves')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
@@ -54,7 +56,7 @@
                       </svg>
                     </div>
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Cap sur vos rêves !</div>
+                        <div class="text-bottom">Établissez un cap vers vos rêves les plus fous !</div>
                     </div>
                 </div>
             </div>
