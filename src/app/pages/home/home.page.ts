@@ -13,6 +13,11 @@ export interface Challenge {
   dateFin: string;
   tempsRestant: string;
 }
+export interface Atelier {
+  name: string;
+  css: string;
+  typeAtelier: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -34,23 +39,47 @@ export class HomePage {
   myAdvices: any[] = [];
   myChallenges: Challenge[] = [];
 
-  challengeLocked = true;
-  revesLocked = true;
+  dateLastOpeningApplication;
+
+  ateliersPlanning: Atelier[];
 
   constructor() {
   }
 
   ngOnInit() {
     this.initLocalStorage();
+    
+    if(!Array.isArray(this.ateliersPlanning) || !this.ateliersPlanning.length) {
+      this.initAteliersPlanning();
+    } else if(!moment().isSame(this.dateLastOpeningApplication, 'day')) {
+      this.updateAteliersPlanning();
+    }
+
+    this.saveAllToLocalStorage();
   } 
+
+  initAteliersPlanning() {
+    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions', css: 'btn3', typeAtelier: 'discussion'};
+    const challenge: Atelier = {name: 'Challenge du jour', css: 'btn4', typeAtelier: 'challenge'};
+    const reves: Atelier = {name: 'Mettez vos rêves en marche', css: 'btn2', typeAtelier: 'reves'};
+
+    this.ateliersPlanning = [];
+    this.ateliersPlanning.push(discussion);
+    this.ateliersPlanning.push(challenge);
+    this.ateliersPlanning.push(reves);
+  }
+
+  updateAteliersPlanning() {
+    this.ateliersPlanning.push(this.ateliersPlanning.shift());
+  }
 
   initLocalStorage() {
     this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
     this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
-    this.challengeLocked = localStorage.getItem('challengeLocked')!=="false";
-    this.revesLocked = localStorage.getItem('revesLocked')!=="false";
+    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning')) || [];
     this.myAdvices = JSON.parse(localStorage.getItem('myAdvices')) || [];
     this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
+    this.dateLastOpeningApplication = localStorage.getItem('dateLastOpeningApplication') || moment().format();
     // this.myAdvices =  [];
     // this.myChallenges = [];
   }
@@ -58,8 +87,8 @@ export class HomePage {
   saveAllToLocalStorage() {
     localStorage.setItem('notificationsAdivce', String(this.notificationsAdivce));
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
-    localStorage.setItem('challengeLocked', String(this.challengeLocked));
-    localStorage.setItem('revesLocked', String(this.revesLocked));
+    localStorage.setItem('dateLastOpeningApplication', String(this.dateLastOpeningApplication));
+    localStorage.setItem('ateliersPlanning', JSON.stringify(this.ateliersPlanning));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
   }
@@ -124,7 +153,6 @@ export class HomePage {
           const advice = this.lastRequestSent[this.botAskingAdviceIndex].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
-          this.challengeLocked = false;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
           const challengeName = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
@@ -147,23 +175,24 @@ export class HomePage {
       console.log('messenger',messenger)
       this.dfMessengerInit();
     } else {
-      setTimeout(() => this.dfMessengerInit(), 100);
-
+      setTimeout(() => this.initMessengerWhenOpened(), 100);
     }
   }
 
   startChat(chatType: string) {
-    if(chatType === 'day' && this.challengeLocked) {
-      // Popup
-    } else if(chatType === 'reves' && this.revesLocked) {
-      // Popup
-    } else {
-      this.chat = '';
-      setTimeout(() => {
-        this.chat = chatType;
-        this.initMessengerWhenOpened();
-      }, 100);
-    }
+    this.chat = '';
+    setTimeout(() => {
+      this.chat = chatType;
+      this.initMessengerWhenOpened();
+    }, 100);
+
+    // if(chatType === 'day' &&  this.ateliersPlanning[0].typeAtelier === chatType) {
+    //   // Popup
+    // } else if(chatType === 'reves' && this.revesLocked) {
+    //   // Popup
+    // } else {
+      
+    // }
   }
 
   setView(page: Page) {

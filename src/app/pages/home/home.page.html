@@ -4,12 +4,12 @@
         <div *ngIf="view === Page.INTRODUCTION">
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
-                <p class="card-text u-mg-vt-m">Résoudre vos problèmes psychologiques, c'est le but de l'application "Noémie"</p>
-                <p class="card-text u-mg-vt-m">Vous êtes <b>l'unique personne</b> qui a la réponse à ces problèmes qui envhaissent votre quotidient.</p>
-                <p class="card-text u-mg-vt-m">Vous avez uniquement besoin qu'on vous pose les bonnes questions.</p>
-                <p class="card-text u-mg-vt-m">C'est le rôle de Noémie. Elle va vous guider vers vos réponses.</p>
-                <p class="card-text u-mg-vt-m">Noémie est une intelligence artificielle et ne peut donc pas vous juger. Pour la première fois, vous allez pouvoir parler librement et à coeur ouvert.</p>
-                <p class="card-text u-mg-vt-m">Vous êtes dans un lieu sûr, un coffre-fort ou vous exprimerez vos idées et vos croyances. Bonne chance !</p>
+                <p class="card-text u-mg-vt-m">Vous pouvez être heureux.</p>
+                <p class="card-text u-mg-vt-m">Vous avez simplement besoin d'aide.</p>
+                <p class="card-text u-mg-vt-m">C'est le rôle de Noémie. Elle va vous guider vers les réponses. Vous guider vers <b>vos</b> réponses pour être heureux.</p>
+                <p class="card-text u-mg-vt-m">Noémie est une intelligence artificielle et ne peut pas vous juger. Vous pourrez lui parler à coeur ouvert.</p>
+                <p class="card-text u-mg-vt-m">Vous êtes dans un lieu sûr, un coffre-fort pour exprimer vos idées et vos croyances.</p>
+                <p class="card-text u-mg-vt-m">Bonne chance.</p>
                 
                 <!-- <p class="card-text u-mg-vt-m">Vous rêvez de vivre une vie épanouie ?</p>
                 <p class="card-text u-mg-vt-m">Rassurez-vous, c'est possible !</p>
@@ -26,37 +26,42 @@
             <div >
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, vos problèmes vont disparaitre :</p> -->
-                <p class="card-text u-mg-vt-s">Tournez-vous vers les solutions :</p>
-                <div (click)="startChat('discussion')" class="btn btn3 custom-btn u-mg-vt-s u-width-full">
+                <p class="card-text u-mg-vt-m">Votre programme de 7 jours vers le bonheur :</p>
+                <p class="card-text u-mg-bottom-s u-mg-top-l">Atelier du jour</p>
+                <div (click)="startChat(ateliersPlanning[0].typeAtelier)" class="btn {{ateliersPlanning[0].css}} custom-btn u-mg-vt-s u-width-full">
                     <div class="text-bottom-container">
                         <!-- <div class="text-bottom">Vous voir de l'extérieur, vous comprendre et vous encourager</div> -->
                         <!-- <div class="text-bottom">Réussissez à vous comprendre et obtenez la réponse à vos questions</div> -->
-                        <div class="text-bottom">Comprenez-vous et explorez les solutions</div>
+                        <div class="text-bottom">{{ ateliersPlanning[0].name }}</div>
                         <!-- <div class="text-bottom">Explorer un sujet personnel et obtenir un conseil</div> -->
                         <!-- <div class="text-bottom">Discussion libre et conseils</div> -->
                         <!-- <div class="text-bottom">Comprendre un sujet personnel et obtenir un conseil</div> -->
                     </div>
                 </div>
-                <div (click)="startChat('day')" class="btn btn4 custom-btn u-mg-vt-s u-width-full">
-                    <div class="lock-icon" *ngIf="challengeLocked">
+                
+                <p class="card-text u-mg-bottom-s u-mg-top-l">Atelier de demain</p>
+                <div class="btn {{ateliersPlanning[1].css}} custom-btn u-mg-vt-s u-width-full">
+                    <div class="lock-icon" >
                         <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
                             <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
                       </svg>
                     </div>
                     <div class="text-bottom-container">
-                        <div class="text-bottom"><b>Votre</b> challenge du jour</div>
+                        <div class="text-bottom">{{ ateliersPlanning[1].name }}</div>
                     </div>
                 </div>
-                <div (click)="startChat('reves')" class="btn btn2 custom-btn u-mg-vt-s u-width-full">
-                    <div class="lock-icon" *ngIf="revesLocked">
+                
+                <p class="card-text u-mg-bottom-s u-mg-top-l">Ateliers à venir</p>
+                <div class="btn {{ateliersPlanning[2].css}} custom-btn u-mg-vt-s u-width-full">
+                    <div class="lock-icon">
                         <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
                             <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
                       </svg>
                     </div>
                     <div class="text-bottom-container">
-                        <div class="text-bottom">Mettez vos rêves en marche</div>
+                        <div class="text-bottom">{{ ateliersPlanning[2].name }}</div>
                     </div>
                 </div>
             </div>
@@ -123,7 +128,7 @@
     <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Cap sur vos rêves"
         agent-id="ff2bb02a-18de-496f-a595-73b9da2382e3" language-code="fr"></df-messenger>
 </div>
-<div *ngIf="chat==='day'">
+<div *ngIf="chat==='challenge'">
     <df-messenger intent="WELCOME" expand="true" chat-title="Noémie - Le Challenge du jour"
         agent-id="7c52b852-101d-44b8-9861-cb3b42e09f24" language-code="fr"></df-messenger>
 </div>
