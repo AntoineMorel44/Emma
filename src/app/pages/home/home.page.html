@@ -27,7 +27,7 @@
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, vos problèmes vont disparaitre :</p> -->
                 <p class="card-text u-mg-vt-m">Votre programme de 7 jours vers le bonheur :</p>
-                <p class="card-text u-mg-bottom-s u-mg-top-l">{{ ateliersPlanning[0].done ? 'Vous avez terminé l\'atelier du jour, bravo ! Revenez demain pour continuer le programme' : 'Atelier du jour' }}</p>
+                <p class="card-text u-mg-bottom-s u-mg-top-l">{{ ateliersPlanning[0].done ? 'Vous avez terminé l\'atelier du jour, bravo ! Revenez demain pour la suite du programme' : 'Atelier du jour' }}</p>
                 <div (click)="startChat(ateliersPlanning[0].typeAtelier)" class="btn {{ateliersPlanning[0].css}} custom-btn u-mg-vt-s u-width-full">
                     <div *ngIf="ateliersPlanning[0].done" class="lock-icon" >
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
