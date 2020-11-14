@@ -17,6 +17,7 @@ export interface Atelier {
   name: string;
   css: string;
   typeAtelier: string;
+  done: boolean;
 }
 @Component({
   selector: 'app-home',
@@ -59,9 +60,9 @@ export class HomePage {
   } 
 
   initAteliersPlanning() {
-    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions', css: 'btn3', typeAtelier: 'discussion'};
-    const challenge: Atelier = {name: 'Challenge du jour', css: 'btn4', typeAtelier: 'challenge'};
-    const reves: Atelier = {name: 'Mettez vos rêves en marche', css: 'btn2', typeAtelier: 'reves'};
+    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions', css: 'btn3', typeAtelier: 'discussion', done: false};
+    const challenge: Atelier = {name: 'Challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false};
+    const reves: Atelier = {name: 'Mettez vos rêves en marche', css: 'btn2', typeAtelier: 'reves', done: false};
 
     this.ateliersPlanning = [];
     this.ateliersPlanning.push(discussion);
@@ -71,6 +72,7 @@ export class HomePage {
 
   updateAteliersPlanning() {
     this.ateliersPlanning.push(this.ateliersPlanning.shift());
+    this.ateliersPlanning[0].done = false;
   }
 
   initLocalStorage() {
@@ -153,12 +155,14 @@ export class HomePage {
           const advice = this.lastRequestSent[this.botAskingAdviceIndex].queryInput.text.text;
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
+          this.ateliersPlanning[0].done = true;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.challenge) {
           const challengeName = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
           let challenge: Challenge = {name: challengeName, dateFin: moment().add(1, 'days').format(), tempsRestant: ''};
           this.myChallenges.push(challenge);
           this.notificationsChallenge++;
+          this.ateliersPlanning[0].done = true;
           this.saveAllToLocalStorage();
         } else if(message && message.payload && message.payload.askingAdvice) {
           this.botAskingAdviceIndex = this.lastRequestSent.length;
@@ -180,11 +184,13 @@ export class HomePage {
   }
 
   startChat(chatType: string) {
-    this.chat = '';
-    setTimeout(() => {
-      this.chat = chatType;
-      this.initMessengerWhenOpened();
-    }, 100);
+    if(!this.ateliersPlanning[0].done) {
+      this.chat = '';
+      setTimeout(() => {
+        this.chat = chatType;
+        this.initMessengerWhenOpened();
+      }, 100);
+    }
 
     // if(chatType === 'day' &&  this.ateliersPlanning[0].typeAtelier === chatType) {
     //   // Popup
