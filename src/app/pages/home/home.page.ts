@@ -36,6 +36,8 @@ export class HomePage {
   notificationsChallenge = 0;
   botAskingAdviceIndex = 0;
   botAskingChallengeIndex = 0;
+  storageVersion: string;
+  appVersion = '0.02';
 
   myAdvices: any[] = [];
   myChallenges: Challenge[] = [];
@@ -60,36 +62,53 @@ export class HomePage {
   } 
 
   initAteliersPlanning() {
-    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions', css: 'btn3', typeAtelier: 'discussion', done: false};
-    const challenge: Atelier = {name: 'Challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false};
-    const reves: Atelier = {name: 'Mettez vos rêves en marche', css: 'btn2', typeAtelier: 'reves', done: false};
+    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions #1', css: 'btn3', typeAtelier: 'discussion', done: false};
+    const discussion2: Atelier = {name: 'Comprenez-vous et explorez les solutions : Vos peurs', css: 'btn3', typeAtelier: 'discussion', done: false};
+    const challenge: Atelier = {name: 'Votre premier Challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false};
+    const challenge2: Atelier = {name: 'Challenge du jour #2', css: 'btn4', typeAtelier: 'challenge', done: false};
+    const challenge3: Atelier = {name: 'Challenge du jour #3', css: 'btn4', typeAtelier: 'challenge', done: false};
+    const reves: Atelier = {name: 'Vos rêves en marche', css: 'btn2', typeAtelier: 'reves', done: false};
+    const reves2: Atelier = {name: 'Vos rêves en marche #2', css: 'btn2', typeAtelier: 'reves', done: false};
 
     this.ateliersPlanning = [];
-    this.ateliersPlanning.push(discussion);
     this.ateliersPlanning.push(challenge);
+    this.ateliersPlanning.push(discussion);
     this.ateliersPlanning.push(reves);
+    this.ateliersPlanning.push(challenge2);
+    this.ateliersPlanning.push(discussion2);
+    this.ateliersPlanning.push(reves2);
+    this.ateliersPlanning.push(challenge3);
   }
 
   updateAteliersPlanning() {
-    this.ateliersPlanning.push(this.ateliersPlanning.shift());
+    this.ateliersPlanning.shift();
     this.ateliersPlanning[0].done = false;
   }
 
   initLocalStorage() {
-    this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
-    this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
-    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning')) || [];
-    this.myAdvices = JSON.parse(localStorage.getItem('myAdvices')) || [];
-    this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
-    this.dateLastOpeningApplication = localStorage.getItem('dateLastOpeningApplication') || moment().format();
-    // this.myAdvices =  [];
-    // this.myChallenges = [];
+    this.notificationsAdivce = +localStorage.getItem('notificationsAdivce');
+    this.notificationsChallenge = +localStorage.getItem('notificationsChallenge');
+    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning'));
+    this.myAdvices = JSON.parse(localStorage.getItem('myAdvices'));
+    this.myChallenges = JSON.parse(localStorage.getItem('myChallenges'));
+    this.dateLastOpeningApplication = localStorage.getItem('dateLastOpeningApplication');
+    this.storageVersion = localStorage.getItem('storageVersion');
+
+    if(this.storageVersion !== this.appVersion) {
+      this.notificationsAdivce = 0;
+      this.notificationsChallenge = 0;
+      this.ateliersPlanning = [];
+      this.myAdvices = [];
+      this.myChallenges = [];
+      this.dateLastOpeningApplication = moment().format();
+    }
   }
 
   saveAllToLocalStorage() {
     localStorage.setItem('notificationsAdivce', String(this.notificationsAdivce));
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
     localStorage.setItem('dateLastOpeningApplication', String(this.dateLastOpeningApplication));
+    localStorage.setItem('storageVersion', String(this.appVersion));
     localStorage.setItem('ateliersPlanning', JSON.stringify(this.ateliersPlanning));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
@@ -125,17 +144,24 @@ export class HomePage {
     let _this = this;
 
     const dfMessenger = document.querySelector('df-messenger');
-    dfMessenger.addEventListener('df-response-received', function (event: any) {
+    window.addEventListener('df-response-received', function (event: any) {
+      
+      // if(event.detail.response.queryResult.intent.isFallback && _this.lastRequestSent.length > 0 &&  _this.lastRequestSent[_this.lastRequestSent.length-1].queryInput.text.text.split(" ").length - 1 < 1) {
+      //   const dfMessenger = document.querySelector('df-messenger') as any;
+      //   dfMessenger.renderCustomText('Je ne suis pas sûr d\'avoir compris votre dernière réponse...');
+      //   dfMessenger.performButtonClickActions_('test');
+      // }
+
       const clone = JSON.parse(JSON.stringify(event.detail.response));
+      console.log('_this.lastResponseReceived', event);
       _this.lastResponseReceived.push(clone);
-      console.log('_this.lastResponseReceived', this);
       _this.handleResponse(clone);
     });
 
     dfMessenger.addEventListener('df-request-sent', function (event: any) {
       const clone = JSON.parse(JSON.stringify(event.detail.requestBody));
       _this.lastRequestSent.push(clone);
-      console.log('_this.lastRequestSent', _this.lastRequestSent);
+      console.log('_this.lastRequestSent', event.detail.requestBody);
     });
 
     dfMessenger.addEventListener('df-button-clicked', function (event: any) {
