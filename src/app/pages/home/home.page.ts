@@ -37,7 +37,7 @@ export class HomePage {
   botAskingAdviceIndex = 0;
   botAskingChallengeIndex = 0;
   storageVersion: string;
-  appVersion = '0.02';
+  appVersion = '0.03';
 
   myAdvices: any[] = [];
   myChallenges: Challenge[] = [];
@@ -55,34 +55,31 @@ export class HomePage {
     if(!Array.isArray(this.ateliersPlanning) || !this.ateliersPlanning.length) {
       this.initAteliersPlanning();
     } else if(!moment().isSame(this.dateLastOpeningApplication, 'day')) {
-      this.updateAteliersPlanning();
+      this.resetAtelierDone();
     }
 
     this.saveAllToLocalStorage();
   } 
 
   initAteliersPlanning() {
-    const discussion: Atelier = {name: 'Comprenez-vous et explorez les solutions #1', css: 'btn3', typeAtelier: 'discussion', done: false};
-    const discussion2: Atelier = {name: 'Comprenez-vous et explorez les solutions : Vos peurs', css: 'btn3', typeAtelier: 'discussion', done: false};
-    const challenge: Atelier = {name: 'Votre premier Challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false};
-    const challenge2: Atelier = {name: 'Challenge du jour #2', css: 'btn4', typeAtelier: 'challenge', done: false};
-    const challenge3: Atelier = {name: 'Challenge du jour #3', css: 'btn4', typeAtelier: 'challenge', done: false};
-    const reves: Atelier = {name: 'Vos rêves en marche', css: 'btn2', typeAtelier: 'reves', done: false};
-    const reves2: Atelier = {name: 'Vos rêves en marche #2', css: 'btn2', typeAtelier: 'reves', done: false};
+    const discussion: Atelier = {name: 'Vous êtes en souffrance émotionnellement et vous souhaitez être apaisé', css: 'btn3', typeAtelier: 'discussion', done: false};
+    // const discussion2: Atelier = {name: 'Comprenez-vous et explorez les solutions : Vos peurs', css: 'btn3', typeAtelier: 'discussion', done: false};
+    const challenge: Atelier = {name: 'Changer vos habitudes : challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false};
+    // const challenge2: Atelier = {name: 'Challenge du jour #2', css: 'btn4', typeAtelier: 'challenge', done: false};
+    // const challenge3: Atelier = {name: 'Challenge du jour #3', css: 'btn4', typeAtelier: 'challenge', done: false};
+    const reves: Atelier = {name: 'Cap sur vos rêves !', css: 'btn2', typeAtelier: 'reves', done: false};
+    // const reves2: Atelier = {name: 'Vos rêves en marche #2', css: 'btn2', typeAtelier: 'reves', done: false};
 
     this.ateliersPlanning = [];
-    this.ateliersPlanning.push(challenge);
     this.ateliersPlanning.push(discussion);
+    this.ateliersPlanning.push(challenge);
     this.ateliersPlanning.push(reves);
-    this.ateliersPlanning.push(challenge2);
-    this.ateliersPlanning.push(discussion2);
-    this.ateliersPlanning.push(reves2);
-    this.ateliersPlanning.push(challenge3);
   }
 
-  updateAteliersPlanning() {
-    this.ateliersPlanning.shift();
-    this.ateliersPlanning[0].done = false;
+  resetAtelierDone() {
+    this.ateliersPlanning.forEach(atelier => {
+      atelier.done = false;
+    })
   }
 
   initLocalStorage() {
@@ -209,14 +206,12 @@ export class HomePage {
     }
   }
 
-  startChat(chatType: string) {
-    if(!this.ateliersPlanning[0].done) {
-      this.chat = '';
-      setTimeout(() => {
-        this.chat = chatType;
-        this.initMessengerWhenOpened();
-      }, 100);
-    }
+  startChat(chatType: string) {    
+    this.chat = '';
+    setTimeout(() => {
+      this.chat = chatType;
+      this.initMessengerWhenOpened();
+    }, 100);
 
     // if(chatType === 'day' &&  this.ateliersPlanning[0].typeAtelier === chatType) {
     //   // Popup
