@@ -120,7 +120,8 @@ export class HomePage {
 
   setMessengerStyle() {
     const dfMessenger: any = document.querySelector('df-messenger').shadowRoot;
-    const messagesList = dfMessenger.querySelector('df-messenger-chat').shadowRoot.querySelector('df-message-list').shadowRoot;
+    const dfMessengerChat: any = dfMessenger.querySelector('df-messenger-chat').shadowRoot;
+    const messagesList = dfMessengerChat.querySelector('df-message-list').shadowRoot;
     const bgElement = <HTMLElement>messagesList.querySelector('.message-list-wrapper');
     console.log('bgElement', bgElement);
     bgElement.style.background = 'url("assets/images/psy.jpg") no-repeat center center fixed';
@@ -135,6 +136,12 @@ export class HomePage {
     const icon = <HTMLElement>dfMessenger.querySelector('#widgetIcon');
     console.log('icon', icon);
     icon.style.display = 'none';
+
+    
+    const chatWrapper = <HTMLElement>dfMessengerChat.querySelector('.chat-wrapper');
+    chatWrapper.style.right = '0px';
+    chatWrapper.style.bottom = '0px';
+    chatWrapper.style.width = '100%';
   }
 
   subscribeToMessengerEvents() {
