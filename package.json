@@ -1,6 +1,6 @@
 {
-  "name": "portfolio-freelance",
-  "version": "0.0.0",
+  "name": "noemie",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,6 +23,7 @@
     "@capacitor/cli": "^2.4.2",
     "@capacitor/core": "^2.4.2",
     "bootstrap": "^4.5.3",
+    "languagedetect": "^2.0.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.3",
     "save": "^2.4.0",

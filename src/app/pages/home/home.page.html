@@ -71,8 +71,10 @@
                         <div class="challenge-card-panel">
                             <div class="card-header">Conseil #{{myAdvices.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize">{{ myAdvices[myAdvices.length - 1 - i] }}</h5>
-                                <p class="card-text">Ajouter des notes supplémentaires...</p>
+                                <h5 class="card-title capitalize u-bold">{{ myAdvices[myAdvices.length - 1 - i].title }}</h5>
+                                <div *ngFor="let response of myAdvices[myAdvices.length - 1 - i].usefullResponses; let j = index">
+                                    <p [class.card-text-advice]="j === myAdvices[myAdvices.length - 1 - i].usefullResponses.length - 1" class="card-text u-mg-xs">{{ response }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
