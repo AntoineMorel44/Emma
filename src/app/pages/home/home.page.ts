@@ -6,14 +6,20 @@ enum Page {
   INTRODUCTION,
   DISCUSS,
   CHALLENGE,
-  ADVICE
+  ADVICE,
+  DREAM
 }
 export interface Challenge {
   name: string;
   dateFin: string;
   tempsRestant: string;
+  usefullResponses: string[];
 }
 export interface Advice {
+  title: string;
+  usefullResponses: string[];
+}
+export interface Dream {
   title: string;
   usefullResponses: string[];
 }
@@ -34,28 +40,32 @@ export class HomePage {
   chat: string = '';
   lastRequestSent: any[];
   lastResponseReceived: any[];
-  advicesToAsk = 2;
   view = Page.INTRODUCTION;
   notificationsAdivce = 0;
   notificationsChallenge = 0;
-  botAskingAdviceIndex = 0;
-  botAskingChallengeIndex = 0;
+  notificationsDream = 0;
   storageVersion: string;
-  appVersion = '0.04';
+  appVersion = '0.05';
 
   myAdvices: Advice[] = [];
   myChallenges: Challenge[] = [];
+  myDreams: Dream[] = [];
   usefullResponses: string[];
 
   dateLastOpeningApplication;
 
   ateliersPlanning: Atelier[];
 
+  dfResponseReceivedEvent: any;
+  dfRequestSentEvent: any;
+  dfButtonClickedEvent: any;
+
   constructor() {
   }
 
   ngOnInit() {
     this.initLocalStorage();
+    this.initEventFunctions();
 
     if (!Array.isArray(this.ateliersPlanning) || !this.ateliersPlanning.length) {
       this.initAteliersPlanning();
@@ -70,6 +80,39 @@ export class HomePage {
     // OR
     // const lngDetector = new (require('languagedetect'));
 
+  }
+
+  initEventFunctions() {
+    let _this = this;
+
+    this.dfResponseReceivedEvent = function dfResponseReceivedEvent(event: any) {
+      const clone = JSON.parse(JSON.stringify(event.detail.response));
+      console.log('_this.lastResponseReceived', event);
+      _this.lastResponseReceived.push(clone);
+      _this.handleResponse(clone);
+    }
+
+    this.dfRequestSentEvent = function dfRequestSentEvent(event: any) {
+      const LanguageDetect = require('languagedetect');
+      const lngDetector = new LanguageDetect();
+      const request = event.detail.requestBody.queryInput.text.text;
+
+      if (!(lngDetector.detect(request, 5)).find(l => l[0] === 'french') && (request).toLocaleLowerCase() !== 'ok') {
+        const dfMessenger = document.querySelector('df-messenger') as any;
+        dfMessenger.renderCustomText('Je ne suis pas sûre d\'avoir compris votre dernière réponse...');
+      }
+
+      const clone = JSON.parse(JSON.stringify(event.detail.requestBody));
+      _this.lastRequestSent.push(clone);
+      console.log('_this.lastRequestSent', event.detail.requestBody);
+    }
+
+    this.dfButtonClickedEvent = function dfButtonClickedEvent(event: any) {
+      console.log('button event');
+      _this.subscribeToMessengerEvents(false);
+      _this.chat = '';
+      _this.setView(Page.DISCUSS);
+    }
   }
 
   private initLngDetector() {
@@ -100,24 +143,27 @@ export class HomePage {
 
   initLocalStorage() {
     this.storageVersion = localStorage.getItem('storageVersion');
-    this.notificationsAdivce = +localStorage.getItem('notificationsAdivce');
-    this.notificationsChallenge = +localStorage.getItem('notificationsChallenge');
-    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning'));
-    this.myChallenges = JSON.parse(localStorage.getItem('myChallenges'));
+    this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
+    this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
+    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning')) || [];
+    this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
+    this.myDreams = JSON.parse(localStorage.getItem('myDreams')) || [];
     this.dateLastOpeningApplication = localStorage.getItem('dateLastOpeningApplication');
+    this.myAdvices = JSON.parse(localStorage.getItem('myAdvices'));
 
-    if (this.storageVersion === '0.03') {
-      this.myAdvices = [];
-      (JSON.parse(localStorage.getItem('myAdvices')) as string[]).forEach(advice => this.myAdvices.push({title:advice,usefullResponses: []}));
-    } else if (this.storageVersion !== this.appVersion) {
+    // if (this.storageVersion === '0.03') {
+    //   this.myAdvices = [];
+    //   this.myDreams = [];
+    //   (JSON.parse(localStorage.getItem('myAdvices')) as string[]).forEach(advice => this.myAdvices.push({ title: advice, usefullResponses: [] }));
+    // }
+    if (this.storageVersion !== this.appVersion) {
       this.notificationsAdivce = 0;
       this.notificationsChallenge = 0;
       this.ateliersPlanning = [];
       this.myAdvices = [];
       this.myChallenges = [];
+      this.myDreams = [];
       this.dateLastOpeningApplication = moment().format();
-    } else {
-      this.myAdvices = JSON.parse(localStorage.getItem('myAdvices'));
     }
   }
 
@@ -129,13 +175,14 @@ export class HomePage {
     localStorage.setItem('ateliersPlanning', JSON.stringify(this.ateliersPlanning));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
+    localStorage.setItem('myDreams', JSON.stringify(this.myDreams));
   }
 
   dfMessengerInit() {
     this.lastRequestSent = [];
     this.lastResponseReceived = [];
     this.setMessengerStyle();
-    this.subscribeToMessengerEvents();
+    this.subscribeToMessengerEvents(true);
   }
 
   setMessengerStyle() {
@@ -170,69 +217,55 @@ export class HomePage {
 
 
   }
-
-  subscribeToMessengerEvents() {
-    let _this = this;
+  subscribeToMessengerEvents(subscribe: boolean) {
 
     const dfMessenger = document.querySelector('df-messenger');
-    window.addEventListener('df-response-received', function (event: any) {
-      const clone = JSON.parse(JSON.stringify(event.detail.response));
-      console.log('_this.lastResponseReceived', event);
-      _this.lastResponseReceived.push(clone);
-      _this.handleResponse(clone);
 
-      if(event.detail.response.queryResult.intent.isFallback && _this.lastRequestSent.length > 0) {
-        _this.usefullResponses.push(_this.lastRequestSent[_this.lastRequestSent.length-1].queryInput.text.text);
-    }
-    });
-
-    dfMessenger.addEventListener('df-request-sent', function (event: any) {
-      const LanguageDetect = require('languagedetect');
-      const lngDetector = new LanguageDetect();
-      const request = event.detail.requestBody.queryInput.text.text;
-
-      if (!(lngDetector.detect(request, 5)).find(l => l[0] === 'french') && (request).toLocaleLowerCase() !== 'ok') {
-        const dfMessenger = document.querySelector('df-messenger') as any;
-        dfMessenger.renderCustomText('Je ne suis pas sûre d\'avoir compris votre dernière réponse...');
+    if (dfMessenger) {
+      if (subscribe) {
+        window.addEventListener('df-response-received', this.dfResponseReceivedEvent);
+        dfMessenger.addEventListener('df-request-sent', this.dfRequestSentEvent);
+        dfMessenger.addEventListener('df-button-clicked', this.dfButtonClickedEvent);
+      } else {
+        window.removeEventListener('df-response-received', this.dfResponseReceivedEvent);
+        dfMessenger.removeEventListener('df-request-sent', this.dfRequestSentEvent);
+        dfMessenger.removeEventListener('df-button-clicked', this.dfButtonClickedEvent);
       }
-
-      const clone = JSON.parse(JSON.stringify(event.detail.requestBody));
-      _this.lastRequestSent.push(clone);
-      console.log('_this.lastRequestSent', event.detail.requestBody);
-    });
-
-    dfMessenger.addEventListener('df-button-clicked', function (event: any) {
-      console.log('button event');
-      _this.chat = '';
-      _this.setView(Page.DISCUSS);
-    });
+    }
   }
 
 
   handleResponse(response) {
-    if (response && response.queryResult && response.queryResult.action) {
+    if (response && response.queryResult) {
       const fulfillmentMessages = response.queryResult.fulfillmentMessages as Array<any>;
 
       fulfillmentMessages.forEach(message => {
-        if (message && message.payload && message.payload.advice) {
-          const lastResponse: string = this.lastRequestSent[this.botAskingAdviceIndex].queryInput.text.text;
-          const advice: Advice = {title: lastResponse, usefullResponses: JSON.parse(JSON.stringify(this.usefullResponses))};
+        if (message && message.payload && message.payload.dream) {
+          const lastResponse: string = this.usefullResponses.pop();
+          const dream: Dream = { title: lastResponse, usefullResponses: JSON.parse(JSON.stringify(this.usefullResponses)) };
+          this.usefullResponses = [];
+          this.myDreams.push(dream);
+          this.notificationsDream++;
+          this.saveAllToLocalStorage();
+        } else if (message && message.payload && message.payload.challenge) {
+          const challengeName = this.usefullResponses.pop();
+          let challenge: Challenge = { name: challengeName, dateFin: moment().add(1, 'days').format(), tempsRestant: '', usefullResponses: JSON.parse(JSON.stringify(this.usefullResponses)) };
+          this.usefullResponses = [];
+          this.myChallenges.push(challenge);
+          this.notificationsChallenge++;
+          this.saveAllToLocalStorage();
+        } else if (message && message.payload && message.payload.advice) {
+          const lastResponse: string = this.usefullResponses.pop();
+          const advice: Advice = { title: lastResponse, usefullResponses: JSON.parse(JSON.stringify(this.usefullResponses)) };
           this.usefullResponses = [];
           this.myAdvices.push(advice);
           this.notificationsAdivce++;
-          this.ateliersPlanning[0].done = true;
           this.saveAllToLocalStorage();
-        } else if (message && message.payload && message.payload.challenge) {
-          const challengeName = this.lastRequestSent[this.botAskingChallengeIndex].queryInput.text.text;
-          let challenge: Challenge = { name: challengeName, dateFin: moment().add(1, 'days').format(), tempsRestant: '' };
-          this.myChallenges.push(challenge);
-          this.notificationsChallenge++;
-          this.ateliersPlanning[0].done = true;
-          this.saveAllToLocalStorage();
-        } else if (message && message.payload && message.payload.askingAdvice) {
-          this.botAskingAdviceIndex = this.lastRequestSent.length;
-        } else if (message && message.payload && message.payload.askingChallenge) {
-          this.botAskingChallengeIndex = this.lastRequestSent.length;
+        }
+
+        if (message && message.payload && message.payload.lastReponseUsefull && this.lastRequestSent.length > 0) {
+          console.log('pushing usefullResponses', this.usefullResponses, this.lastRequestSent[this.lastRequestSent.length - 1].queryInput.text.text)
+          this.usefullResponses.push(this.lastRequestSent[this.lastRequestSent.length - 1].queryInput.text.text);
         }
       });
     }
@@ -250,16 +283,19 @@ export class HomePage {
 
   startChat(chatType: string) {
     this.usefullResponses = [];
-    if(chatType === this.chat) {
-      const messenger = document.querySelector('df-messenger') as any;
-      messenger.toggleExpandAttribute_();
-    } else {
-      this.chat = '';
-      setTimeout(() => {
-        this.chat = chatType;
-        this.initMessengerWhenOpened();
-      }, 100);
-    }
+    this.subscribeToMessengerEvents(false);
+    this.chat = '';
+    setTimeout(() => {
+      this.chat = chatType;
+      this.initMessengerWhenOpened();
+    }, 100);
+
+    // if (chatType === this.chat) {
+    //   const messenger = document.querySelector('df-messenger') as any;
+    //   messenger.toggleExpandAttribute_();
+    // } else {
+
+    // }
 
     // if(chatType === 'day' &&  this.ateliersPlanning[0].typeAtelier === chatType) {
     //   // Popup
@@ -275,6 +311,8 @@ export class HomePage {
       // Ne rien faire pour l'instant
     } else if (this.myAdvices.length === 0 && page === Page.ADVICE) {
       // Ne rien faire pour l'instant
+    } else if (this.myDreams.length === 0 && page === Page.DREAM) {
+      // Ne rien faire pour l'instant
     } else {
       if (page === Page.ADVICE) {
         this.notificationsAdivce = 0;
@@ -282,6 +320,9 @@ export class HomePage {
       } else if (page === Page.CHALLENGE) {
         this.notificationsChallenge = 0;
         this.computeTempsRestantOfChallenges();
+        this.saveAllToLocalStorage();
+      } else if (page === Page.DREAM) {
+        this.notificationsDream = 0;
         this.saveAllToLocalStorage();
       }
       this.scrollToTop();

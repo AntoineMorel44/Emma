@@ -52,10 +52,14 @@
                         <div class="challenge-card-panel">
                             <div class="card-header">Challenge #{{myChallenges.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize">{{ myChallenges[myChallenges.length - 1 - i].name }}
+                                <h5 class="card-title capitalize u-bold">{{ myChallenges[myChallenges.length - 1 - i].name }}
                                 </h5>
-                                <p class="card-text">Temps restant :
+                                <p class="card-text u-mg-m">Temps restant :
                                     {{ myChallenges[myChallenges.length - 1 - i].tempsRestant }}</p>
+                                    <div *ngFor="let response of myChallenges[myChallenges.length - 1 - i].usefullResponses">
+                                        <p class="card-text u-mg-xs">{{ response }}</p>
+                                    </div>
+                                    <p class="card-text card-text-advice u-mg-xs">{{ myChallenges[myChallenges.length - 1 - i].name }}</p>
                             </div>
                         </div>
                     </div>
@@ -72,9 +76,30 @@
                             <div class="card-header">Conseil #{{myAdvices.length - i}}</div>
                             <div class="card-body card-body-challenge">
                                 <h5 class="card-title capitalize u-bold">{{ myAdvices[myAdvices.length - 1 - i].title }}</h5>
-                                <div *ngFor="let response of myAdvices[myAdvices.length - 1 - i].usefullResponses; let j = index">
-                                    <p [class.card-text-advice]="j === myAdvices[myAdvices.length - 1 - i].usefullResponses.length - 1" class="card-text u-mg-xs">{{ response }}</p>
+                                <div *ngFor="let response of myAdvices[myAdvices.length - 1 - i].usefullResponses">
+                                    <p class="card-text u-mg-xs">{{ response }}</p>
                                 </div>
+                                <p class="card-text card-text-advice u-mg-xs">{{ myAdvices[myAdvices.length - 1 - i].title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="view === Page.DREAM">
+            <h5 class="card-title main-card-title">Vos rêves</h5>
+            <p class="card-text u-mg-vt-m">Retrouvez vos projets futurs</p>
+            <div>
+                <div *ngFor="let dream of myDreams; let i = index">
+                    <div class="card text-white dream-card mb-1">
+                        <div class="challenge-card-panel">
+                            <div class="card-header">Rêve #{{myDreams.length - i}}</div>
+                            <div class="card-body card-body-challenge">
+                                <h5 class="card-title capitalize u-bold">{{ myDreams[myDreams.length - 1 - i].title }}</h5>
+                                <div *ngFor="let response of myDreams[myDreams.length - 1 - i].usefullResponses">
+                                    <p class="card-text u-mg-xs">{{ response }}</p>
+                                </div>
+                                <p class="card-text card-text-advice u-mg-xs">{{ myDreams[myDreams.length - 1 - i].title }}</p>
                             </div>
                         </div>
                     </div>
@@ -102,6 +127,12 @@
         <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph"> -->
         Trésors
         <span *ngIf="notificationsAdivce > 0" class="badge badge-info">{{ notificationsAdivce }}</span>
+    </div>
+    <div class="navbar-item" [class.selected]="view === Page.DREAM" (click)="setView(Page.DREAM)">
+        <!-- <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
+        <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph"> -->
+        Rêves
+        <span *ngIf="notificationsDream > 0" class="badge badge-info">{{ notificationsDream }}</span>
     </div>
 </div>
 

@@ -22,6 +22,7 @@
     
     .challenge-card-panel {
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
+        // background: linear-gradient(0deg,rgba(0, 0, 0, 0.0) 50%, rgba(0, 0, 0, 0.7) 100%);
     }
 
     &.introduction {
@@ -80,6 +81,13 @@
     background: url("../../../assets/images/advice.jpg") no-repeat center center fixed;
     background-size: cover;
 }
+
+.dream-card {
+    background-color: #244d74;
+    background: url("../../../assets/images/dream.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
 
 .custom-btn {
     text-align: left;
