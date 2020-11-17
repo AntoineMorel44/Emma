@@ -5,10 +5,14 @@
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
                 <p class="card-text u-mg-vt-m">Vous sentez que vous êtes en souffrance émotionnellement ?</p>
-                <p class="card-text u-mg-vt-m">Vous avez très mal et besoin de vous ouvrir, ne serait-ce qu'à une machine ?</p>
-                <p class="card-text u-mg-vt-m">L'application Noémie permet de vous donner l'impression que vous parler à quelqu'un.</p>
-                <p class="card-text u-mg-vt-m">Noémie n'est pas un psychologue, simplement un interlocuteur auprès de qui vous pouvez vous ouvrir.</p>
-                <p class="card-text u-mg-vt-m">Parler est le meilleur moyen de guérir. Même si c'est à une machine, même si c'est à une application mobile.</p>
+                <p class="card-text u-mg-vt-m">Vous avez très mal et besoin de vous ouvrir, ne serait-ce qu'à une
+                    machine ?</p>
+                <p class="card-text u-mg-vt-m">L'application Noémie permet de vous donner l'impression que vous parler à
+                    quelqu'un.</p>
+                <p class="card-text u-mg-vt-m">Noémie n'est pas un psychologue, simplement un interlocuteur auprès de
+                    qui vous pouvez vous ouvrir.</p>
+                <p class="card-text u-mg-vt-m">Parler est le meilleur moyen de guérir. Même si c'est à une machine, même
+                    si c'est à une application mobile.</p>
                 <!-- <p class="card-text u-mg-vt-m">Vous êtes dans un lieu sûr, un coffre-fort ou vous pouvez vous exprimer.</p> -->
                 <p class="card-text u-mg-vt-m">Bonne chance.</p>
 
@@ -27,20 +31,24 @@
             <div>
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, vos problèmes vont disparaitre :</p> -->
-                <p *ngIf="notificationsAdivce===0 && notificationsChallenge===0" class="card-text u-mg-bottom-s u-mg-top-l">Parlez, c'est le meilleur moyen de vous libérer</p>
-                <p *ngIf="ateliersPlanning[0].done && notificationsAdivce>0" class="card-text u-mg-bottom-s u-mg-top-l">
+                <p *ngIf="notificationsAdivce===0 && notificationsChallenge===0"
+                    class="card-text u-mg-bottom-s u-mg-top-l">Parlez, c'est le meilleur moyen de vous libérer</p>
+                <p *ngIf="notificationsAdivce>0" class="card-text u-mg-bottom-s u-mg-top-l">
                     Vous avez un trésor en attente. Ouvrez-le depuis le menu en bas de votre écran.</p>
-                <p *ngIf="ateliersPlanning[0].done && notificationsChallenge>0"
+                <p *ngIf="notificationsChallenge>0"
                     class="card-text u-mg-bottom-s u-mg-top-l">Vous avez un challenge en attente. Ouvrez-le depuis le
                     menu en bas de votre écran.</p>
-                    <div *ngFor="let atelier of ateliersPlanning">
-                        <div (click)="startChat(atelier.typeAtelier)"
+                <p *ngIf="notificationsDream>0"
+                    class="card-text u-mg-bottom-s u-mg-top-l">Vous avez un objectif en attente. Ouvrez-le depuis le
+                    menu en bas de votre écran.</p>
+                <div *ngFor="let atelier of ateliersPlanning">
+                    <div (click)="startChat(atelier.typeAtelier)"
                         class="btn {{atelier.css}} custom-btn u-mg-vt-s u-width-full">
                         <div class="text-bottom-container">
                             <div class="text-bottom">{{ atelier.name }}</div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
         <div *ngIf="view === Page.CHALLENGE">
@@ -52,14 +60,17 @@
                         <div class="challenge-card-panel">
                             <div class="card-header">Challenge #{{myChallenges.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize u-bold">{{ myChallenges[myChallenges.length - 1 - i].name }}
+                                <h5 class="card-title capitalize u-bold">
+                                    {{ myChallenges[myChallenges.length - 1 - i].name }}
                                 </h5>
                                 <p class="card-text u-mg-m">Temps restant :
                                     {{ myChallenges[myChallenges.length - 1 - i].tempsRestant }}</p>
-                                    <div *ngFor="let response of myChallenges[myChallenges.length - 1 - i].usefullResponses">
-                                        <p class="card-text u-mg-xs">{{ response }}</p>
-                                    </div>
-                                    <p class="card-text card-text-advice u-mg-xs">{{ myChallenges[myChallenges.length - 1 - i].name }}</p>
+                                <div
+                                    *ngFor="let response of myChallenges[myChallenges.length - 1 - i].usefullResponses">
+                                    <p class="card-text u-mg-xs">{{ response }}</p>
+                                </div>
+                                <p class="card-text card-text-advice u-mg-xs">
+                                    {{ myChallenges[myChallenges.length - 1 - i].name }}</p>
                             </div>
                         </div>
                     </div>
@@ -75,11 +86,13 @@
                         <div class="challenge-card-panel">
                             <div class="card-header">Conseil #{{myAdvices.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize u-bold">{{ myAdvices[myAdvices.length - 1 - i].title }}</h5>
+                                <h5 class="card-title capitalize u-bold">{{ myAdvices[myAdvices.length - 1 - i].title }}
+                                </h5>
                                 <div *ngFor="let response of myAdvices[myAdvices.length - 1 - i].usefullResponses">
                                     <p class="card-text u-mg-xs">{{ response }}</p>
                                 </div>
-                                <p class="card-text card-text-advice u-mg-xs">{{ myAdvices[myAdvices.length - 1 - i].title }}</p>
+                                <p class="card-text card-text-advice u-mg-xs">
+                                    {{ myAdvices[myAdvices.length - 1 - i].title }}</p>
                             </div>
                         </div>
                     </div>
@@ -87,19 +100,21 @@
             </div>
         </div>
         <div *ngIf="view === Page.DREAM">
-            <h5 class="card-title main-card-title">Vos rêves</h5>
+            <h5 class="card-title main-card-title">Vos Objectifs</h5>
             <p class="card-text u-mg-vt-m">Retrouvez vos projets futurs</p>
             <div>
                 <div *ngFor="let dream of myDreams; let i = index">
                     <div class="card text-white dream-card mb-1">
                         <div class="challenge-card-panel">
-                            <div class="card-header">Rêve #{{myDreams.length - i}}</div>
+                            <div class="card-header">Objectif #{{myDreams.length - i}}</div>
                             <div class="card-body card-body-challenge">
-                                <h5 class="card-title capitalize u-bold">{{ myDreams[myDreams.length - 1 - i].title }}</h5>
+                                <h5 class="card-title capitalize u-bold">{{ myDreams[myDreams.length - 1 - i].title }}
+                                </h5>
                                 <div *ngFor="let response of myDreams[myDreams.length - 1 - i].usefullResponses">
                                     <p class="card-text u-mg-xs">{{ response }}</p>
                                 </div>
-                                <p class="card-text card-text-advice u-mg-xs">{{ myDreams[myDreams.length - 1 - i].title }}</p>
+                                <p class="card-text card-text-advice u-mg-xs">
+                                    {{ myDreams[myDreams.length - 1 - i].title }}</p>
                             </div>
                         </div>
                     </div>
@@ -116,22 +131,22 @@
         <img [class.hidden]="view === Page.DISCUSS" class="nav-icon selected" src="assets/icons/discuss.svg" alt="discuss"> -->
         Noémie
     </div>
-    <div class="navbar-item" [class.selected]="view === Page.CHALLENGE" (click)="setView(Page.CHALLENGE)">
-        <!-- <img [class.hidden]="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
-        <img [class.hidden]="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star"> -->
-        Challenges
-        <span *ngIf="notificationsChallenge > 0" class="badge badge-info">{{ notificationsChallenge }}</span>
-    </div>
     <div class="navbar-item" [class.selected]="view === Page.ADVICE" (click)="setView(Page.ADVICE)">
         <!-- <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
         <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph"> -->
         Trésors
         <span *ngIf="notificationsAdivce > 0" class="badge badge-info">{{ notificationsAdivce }}</span>
     </div>
+    <div class="navbar-item" [class.selected]="view === Page.CHALLENGE" (click)="setView(Page.CHALLENGE)">
+        <!-- <img [class.hidden]="view !== Page.CHALLENGE" class="nav-icon" src="assets/icons/star-selected.svg" alt="star">
+        <img [class.hidden]="view === Page.CHALLENGE" class="nav-icon" src="assets/icons/star.svg" alt="star"> -->
+        Challenges
+        <span *ngIf="notificationsChallenge > 0" class="badge badge-info">{{ notificationsChallenge }}</span>
+    </div>
     <div class="navbar-item" [class.selected]="view === Page.DREAM" (click)="setView(Page.DREAM)">
         <!-- <img [class.hidden]="view !== Page.ADVICE" class="nav-icon" src="assets/icons/graph-selected.svg" alt="graph">
         <img [class.hidden]="view === Page.ADVICE" class="nav-icon" src="assets/icons/graph.svg" alt="graph"> -->
-        Rêves
+        Objectifs
         <span *ngIf="notificationsDream > 0" class="badge badge-info">{{ notificationsDream }}</span>
     </div>
 </div>

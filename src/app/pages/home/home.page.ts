@@ -145,6 +145,7 @@ export class HomePage {
     this.storageVersion = localStorage.getItem('storageVersion');
     this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
     this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
+    this.notificationsDream = +localStorage.getItem('notificationsDream') || 0;
     this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning')) || [];
     this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
     this.myDreams = JSON.parse(localStorage.getItem('myDreams')) || [];
@@ -159,6 +160,7 @@ export class HomePage {
     if (this.storageVersion !== this.appVersion) {
       this.notificationsAdivce = 0;
       this.notificationsChallenge = 0;
+      this.notificationsDream = 0;
       this.ateliersPlanning = [];
       this.myAdvices = [];
       this.myChallenges = [];
@@ -170,6 +172,7 @@ export class HomePage {
   saveAllToLocalStorage() {
     localStorage.setItem('notificationsAdivce', String(this.notificationsAdivce));
     localStorage.setItem('notificationsChallenge', String(this.notificationsChallenge));
+    localStorage.setItem('notificationsDream', String(this.notificationsDream));
     localStorage.setItem('dateLastOpeningApplication', String(this.dateLastOpeningApplication));
     localStorage.setItem('storageVersion', String(this.appVersion));
     localStorage.setItem('ateliersPlanning', JSON.stringify(this.ateliersPlanning));
