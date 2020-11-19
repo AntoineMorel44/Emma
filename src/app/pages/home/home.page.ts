@@ -66,12 +66,12 @@ export class HomePage {
   ngOnInit() {
     this.initLocalStorage();
     this.initEventFunctions();
+    this.initAteliersPlanning();
 
-    if (!Array.isArray(this.ateliersPlanning) || !this.ateliersPlanning.length) {
-      this.initAteliersPlanning();
-    } else if (!moment().isSame(this.dateLastOpeningApplication, 'day')) {
-      this.resetAtelierDone();
-    }
+    // if (!Array.isArray(this.ateliersPlanning) || !this.ateliersPlanning.length) {
+    // } else if (!moment().isSame(this.dateLastOpeningApplication, 'day')) {
+    //   this.resetAtelierDone();
+    // }
 
     this.saveAllToLocalStorage();
 
@@ -121,12 +121,12 @@ export class HomePage {
   }
 
   initAteliersPlanning() {
-    const discussion: Atelier = { name: 'Vous êtes en souffrance émotionnellement et vous souhaitez être apaisé', css: 'btn3', typeAtelier: 'discussion', done: false };
+    const discussion: Atelier = { name: 'Vous êtes plein de questions et vous souhaitez des réponses', css: 'btn3', typeAtelier: 'discussion', done: false };
     // const discussion2: Atelier = {name: 'Comprenez-vous et explorez les solutions : Vos peurs', css: 'btn3', typeAtelier: 'discussion', done: false};
-    const challenge: Atelier = { name: 'Changer vos habitudes : challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false };
+    const challenge: Atelier = { name: 'Changer vos habitudes et devenez une meilleure personne avec le challenge du jour', css: 'btn4', typeAtelier: 'challenge', done: false };
     // const challenge2: Atelier = {name: 'Challenge du jour #2', css: 'btn4', typeAtelier: 'challenge', done: false};
     // const challenge3: Atelier = {name: 'Challenge du jour #3', css: 'btn4', typeAtelier: 'challenge', done: false};
-    const reves: Atelier = { name: 'Cap sur vos rêves !', css: 'btn2', typeAtelier: 'reves', done: false };
+    const reves: Atelier = { name: 'Faites le points sur vos rêves et vos motivations profondes', css: 'btn2', typeAtelier: 'reves', done: false };
     // const reves2: Atelier = {name: 'Vos rêves en marche #2', css: 'btn2', typeAtelier: 'reves', done: false};
 
     this.ateliersPlanning = [];
@@ -146,7 +146,6 @@ export class HomePage {
     this.notificationsAdivce = +localStorage.getItem('notificationsAdivce') || 0;
     this.notificationsChallenge = +localStorage.getItem('notificationsChallenge') || 0;
     this.notificationsDream = +localStorage.getItem('notificationsDream') || 0;
-    this.ateliersPlanning = JSON.parse(localStorage.getItem('ateliersPlanning')) || [];
     this.myChallenges = JSON.parse(localStorage.getItem('myChallenges')) || [];
     this.myDreams = JSON.parse(localStorage.getItem('myDreams')) || [];
     this.dateLastOpeningApplication = localStorage.getItem('dateLastOpeningApplication');
@@ -161,7 +160,6 @@ export class HomePage {
       this.notificationsAdivce = 0;
       this.notificationsChallenge = 0;
       this.notificationsDream = 0;
-      this.ateliersPlanning = [];
       this.myAdvices = [];
       this.myChallenges = [];
       this.myDreams = [];
@@ -175,7 +173,6 @@ export class HomePage {
     localStorage.setItem('notificationsDream', String(this.notificationsDream));
     localStorage.setItem('dateLastOpeningApplication', String(this.dateLastOpeningApplication));
     localStorage.setItem('storageVersion', String(this.appVersion));
-    localStorage.setItem('ateliersPlanning', JSON.stringify(this.ateliersPlanning));
     localStorage.setItem('myAdvices', JSON.stringify(this.myAdvices));
     localStorage.setItem('myChallenges', JSON.stringify(this.myChallenges));
     localStorage.setItem('myDreams', JSON.stringify(this.myDreams));

@@ -4,17 +4,14 @@
         <div *ngIf="view === Page.INTRODUCTION">
             <h5 class="card-title main-card-title introduction">Introduction</h5>
             <div>
-                <p class="card-text u-mg-vt-m">Vous sentez que vous êtes en souffrance émotionnellement ?</p>
-                <p class="card-text u-mg-vt-m">Vous avez très mal et besoin de vous ouvrir, ne serait-ce qu'à une
-                    machine ?</p>
-                <p class="card-text u-mg-vt-m">L'application Noémie permet de vous donner l'impression que vous parler à
-                    quelqu'un.</p>
-                <p class="card-text u-mg-vt-m">Noémie n'est pas un psychologue, simplement un interlocuteur auprès de
-                    qui vous pouvez vous ouvrir.</p>
-                <p class="card-text u-mg-vt-m">Parler est le meilleur moyen de guérir. Même si c'est à une machine, même
-                    si c'est à une application mobile.</p>
+                <p class="card-text u-mg-vt-m">Vous êtes perdu, vous ne savez pas qels choix professionnels et personnels faire dans votre vie ? Vous chercher quelqu'un pour vous guider, extraire les réponses qui sont au fond de vous ?</p>
+                <p class="card-text u-mg-vt-m">Noémie est une coach de vie virtuelle</p>
+                <p class="card-text u-mg-vt-m">Elle vous guide vers les réponses que vous souhaitez apporter à vos problématiques personnelles ou profesionnelles</p>
+                <p class="card-text u-mg-vt-m">Vous allez pouvoir être guider. Vous allez enfin trouver la réponse à vos questions.</p>
+                <p class="card-text u-mg-vt-m">Tout ce que vous avez à faire est de télécharger l'application. Noémie vous guidera</p>
                 <!-- <p class="card-text u-mg-vt-m">Vous êtes dans un lieu sûr, un coffre-fort ou vous pouvez vous exprimer.</p> -->
-                <p class="card-text u-mg-vt-m">Bonne chance.</p>
+                <p class="card-text u-mg-vt-m">Bonne chance, les réponses sont déjà entre vos mains. </p>
+                <p class="card-text u-mg-vt-m">Merci pour votre confiance</p>
 
                 <!-- <p class="card-text u-mg-vt-m">Vous rêvez de vivre une vie épanouie ?</p>
                 <p class="card-text u-mg-vt-m">Rassurez-vous, c'est possible !</p>
@@ -23,7 +20,7 @@
                 <p class="card-text u-mg-vt-m">Bonne nouvelle : c'est le rôle de Noémie, et elle va vous aider.</p>
                 <p class="card-text u-mg-vt-m">Vous pourrez parler librement sans être jugé, et vous ouvrir plus à elle que vous vous ne pourriez à un être humain. En effet, Noémie est une intelligence artificielle, et elle ne peux <b>pas</b> vous juger.</p>
                 <p class="card-text u-mg-vt-m">En résumé, cet endroit est un lieu sûr ou vous pourrez discuter, réfléchir sur vous-même et devenir une meilleure personne. Bonne chance !</p> -->
-                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer</a>
+                <a (click)="setView(Page.DISCUSS)" class="btn  btn-light u-mg-vt-s u-width-full">Commencer maintenant</a>
             </div>
         </div>
         <div *ngIf="view === Page.DISCUSS">
@@ -32,7 +29,7 @@
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, réalisez vos rêves :</p> -->
                 <!-- <p class="card-text u-mg-vt-s">Étape par étape, vos problèmes vont disparaitre :</p> -->
                 <p *ngIf="notificationsAdivce===0 && notificationsChallenge===0"
-                    class="card-text u-mg-bottom-s u-mg-top-l">Parlez, c'est le meilleur moyen de vous libérer</p>
+                    class="card-text u-mg-bottom-s u-mg-top-l">Vous avez les réponses en vous. Il vous faut simplement les bonnes questions.</p>
                 <p *ngIf="notificationsAdivce>0" class="card-text u-mg-bottom-s u-mg-top-l">
                     Vous avez un trésor en attente. Ouvrez-le depuis le menu en bas de votre écran.</p>
                 <p *ngIf="notificationsChallenge>0"
@@ -79,7 +76,7 @@
         </div>
         <div *ngIf="view === Page.ADVICE">
             <h5 class="card-title main-card-title">Vos trésors</h5>
-            <p class="card-text u-mg-vt-m">Retrouvez vos précieux conseils</p>
+            <p class="card-text u-mg-vt-m">La réponse à vos questions</p>
             <div>
                 <div *ngFor="let advice of myAdvices; let i = index">
                     <div class="card text-white advice-card mb-1">
@@ -101,7 +98,7 @@
         </div>
         <div *ngIf="view === Page.DREAM">
             <h5 class="card-title main-card-title">Vos Objectifs</h5>
-            <p class="card-text u-mg-vt-m">Retrouvez vos projets futurs</p>
+            <p class="card-text u-mg-vt-m">Vos rêves et vos motivations profondes</p>
             <div>
                 <div *ngFor="let dream of myDreams; let i = index">
                     <div class="card text-white dream-card mb-1">
